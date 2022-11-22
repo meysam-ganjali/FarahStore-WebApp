@@ -1,7 +1,11 @@
+using FarahStoreApplication.UnitOfWorkPattern;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using FarahStoreWeb.Data;
+
 var builder = WebApplication.CreateBuilder(args);
+#region DataBaseCnetxt, Identity
+
 var connectionString = builder.Configuration.GetConnectionString("DatabaseContexConnection") ?? throw new InvalidOperationException("Connection string 'DatabaseContexConnection' not found.");
 
 builder.Services.AddDbContext<DatabaseContex>(options =>
@@ -10,12 +14,21 @@ builder.Services.AddDbContext<DatabaseContex>(options =>
 builder.Services.AddDefaultIdentity<IdentityUser>()
     .AddEntityFrameworkStores<DatabaseContex>();
 
-// Add services to the container.
+#endregion
+
+
+#region Add services to the container
+
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+#endregion
+
+#region Configure the HTTP request pipeline.
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
@@ -39,3 +52,6 @@ app.MapControllerRoute(
     pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 app.MapRazorPages();
 app.Run();
+
+#endregion
+

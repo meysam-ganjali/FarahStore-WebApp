@@ -1,4 +1,6 @@
-﻿using FarahStoreWeb.Data;
+﻿using FarahStoreApplication.GenericRepository;
+using FarahStoreApplication.GenericRepository.IGenericRepository;
+using FarahStoreWeb.Data;
 
 namespace FarahStoreApplication.UnitOfWorkPattern;
 
@@ -10,11 +12,11 @@ public class UnitOfWork : IUnitOfWork
     public UnitOfWork(DatabaseContex db)
     {
         _db = db;
-       // Category = new CategoryRepository(_db);
+        Category = new CategoryRepository(_db);
       
     }
 
-   // public ICategoryRepository Category { get; private set; }
+    public ICategoryRepositry Category { get; private set; }
    
     public async Task Save()
     {

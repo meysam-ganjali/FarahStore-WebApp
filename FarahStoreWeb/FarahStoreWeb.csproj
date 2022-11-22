@@ -36,6 +36,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\FarahStoreApplication\FarahStoreApplication.csproj" />
     <ProjectReference Include="..\FarahStoreDataAccess\FarahStoreDataAccess.csproj" />
   </ItemGroup>
 

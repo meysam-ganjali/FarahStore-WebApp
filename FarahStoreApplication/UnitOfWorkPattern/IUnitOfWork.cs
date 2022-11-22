@@ -1,7 +1,9 @@
-﻿namespace FarahStoreApplication.UnitOfWorkPattern;
+﻿using FarahStoreApplication.GenericRepository.IGenericRepository;
+
+namespace FarahStoreApplication.UnitOfWorkPattern;
 
 public interface IUnitOfWork : IDisposable
 {
-   // ICategoryRepository Category { get; }
+    ICategoryRepositry Category { get; }
     Task Save();
 }
