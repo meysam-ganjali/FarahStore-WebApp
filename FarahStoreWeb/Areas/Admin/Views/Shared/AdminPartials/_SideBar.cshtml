@@ -1,0 +1,137 @@
+﻿
+<div class="col-md-3 left_col hidden-print">
+    <div class="left_col scroll-view">
+        <div class="navbar nav_title" style="border: 0;">
+            <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Gentelella Alela!</span></a>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <!-- menu profile quick info -->
+        <div class="profile clearfix">
+            <div class="profile_pic">
+                <img src="" alt="" class="img-circle profile_img">
+            </div>
+            <div class="profile_info">
+                <span>خوش آمدید,</span>
+                <h2>
+                    مدیر
+                </h2>
+            </div>
+        </div>
+        <!-- /menu profile quick info -->
+
+        <br />
+
+        <!-- sidebar menu -->
+        <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+            <div class="menu_section">
+                <h3>عمومی</h3>
+                <ul class="nav side-menu">
+                    <li>
+                        <a href="/Admin">
+                            <i class="fa fa-dashboard"></i> داشبورد
+                        </a>
+                    </li>
+                    <li>
+                        <a><i class="fa fa-bolt"></i> نقش ها <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="/Admin/Roles/Index">لیست نقش ها</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a><i class="fa fa-user"></i> کاربران <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="/Admin/Users/Index">لیست کاربران</a></li>
+                            <li><a href="/Admin/Users/RegisterUserForAdmin">ثبت کاربر جدید</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a><i class="fa fa-folder-open"></i> دسته بندی متعلقات <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="/Admin/Categories/Index">لیست دسته ها</a></li>
+                            <li><a href="/Admin/Categories/ShowAllChild">لیست دسته های دارای پدر</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a><i class="glyphicon glyphicon-usd" aria-hidden="true"></i>نوع مبالغ متعلقات <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="/Admin/AmountTypes/Index">لیست انواع مبالغ</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a><i class="fa fa-suitcase"></i> امکانات-مشخصات  <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li>
+                                <a href="#level1_1">امکانات<span class="fa fa-chevron-down"></span> </a>
+                                <ul class="nav child_menu">
+                                    <li>
+                                        <a href="/Admin/Possibilities/Index"><i class="fa fa-list"></i> لیست امکانات</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#level1_1">مشخصات<span class="fa fa-chevron-down"></span> </a>
+                                <ul class="nav child_menu">
+                                    <li>
+                                        <a href="/Admin/Belongings/Index"><i class="fa fa-list"></i> لیست مشخصات</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a><i class="fa fa-home"></i> متعلقات <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="/Admin/AdminProperties/Index">لیست متعلقات</a></li>
+                            <li><a href="/Admin/AdminProperties/CreateProperty">ثبت متعلقات</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> تنضیمات  <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li>
+                                <a href="#level1_1">صفحه اصلی<span class="fa fa-chevron-down"></span> </a>
+                                <ul class="nav child_menu">
+                                    <li>
+                                        <a href="#level1_1">اسلایدر<span class="fa fa-chevron-down"></span> </a>
+                                        <ul class="nav child_menu">
+                                            <li>
+                                                <a href="/Admin/Sliders/Index"><i class="fa fa-list"></i> لیست اسلایدر</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#level1_1">تنظیمات پاورقی<span class="fa fa-chevron-down"></span> </a>
+                                        <ul class="nav child_menu">
+                                            <li>
+                                                <a href="/Admin/Possibilities/Index"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>پیکربندی</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- /sidebar menu -->
+        <!-- /menu footer buttons -->
+        <div class="sidebar-footer hidden-small">
+            <a data-toggle="tooltip" data-placement="top" title="تنظیمات">
+                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+            </a>
+            <a data-toggle="tooltip" data-placement="top" title="تمام صفحه" onclick="toggleFullScreen();">
+                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+            </a>
+            <a data-toggle="tooltip" data-placement="top" title="قفل" class="lock_btn">
+                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+            </a>
+            <a data-toggle="tooltip" data-placement="top" title="خروج" href="/Auth/SignOut">
+                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+            </a>
+        </div>
+        <!-- /menu footer buttons -->
+    </div>
+</div>
