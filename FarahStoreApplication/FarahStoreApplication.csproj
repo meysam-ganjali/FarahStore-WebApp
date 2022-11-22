@@ -11,4 +11,9 @@
     <Folder Include="UnitOfWorkPattern\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\FarahStoreDataAccess\FarahStoreDataAccess.csproj" />
+    <ProjectReference Include="..\FarahStoreModel\FarahStoreModel.csproj" />
+  </ItemGroup>
+
 </Project>
