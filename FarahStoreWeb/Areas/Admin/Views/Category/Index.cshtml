@@ -1,19 +1,15 @@
 ﻿@model IEnumerable<FarahStoreModel.Models.Category>
 <div class="page-title">
     <div class="title_left">
-        <h3>جداول
-            <small>بعضی از نمونه ها برای شروع کار شما</small>
-        </h3>
-    </div>
-
-    <div class="title_right">
         <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="جست و جو برای...">
-                <span class="input-group-btn">
-                    <button class="btn btn-default" type="button">برو!</button>
-                </span>
-            </div>
+            <form method="Post" action="/Admin/Category/index">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="searchKey" placeholder="جست و جو دسته بندی">
+                    <span class="input-group-btn">
+                        <button class="btn btn-secondary" type="submit"><i class="fa fa-search"></i></button>
+                    </span>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -22,51 +18,66 @@
     <div class="x_panel">
         <div class="x_title">
             <h2>
-                طراحی جدول
-                <small>طراحی شخصی شده</small>
+                لیست دسته بندی ها
             </h2>
-            <ul class="nav navbar-right panel_toolbox">
-                <li>
-                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li>
-                            <a href="#">تنظیمات 1</a>
-                        </li>
-                        <li>
-                            <a href="#">تنظیمات 2</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a class="close-link"><i class="fa fa-close"></i></a>
-                </li>
-            </ul>
+            <div class="panel_toolbox">
+                <a class="btn btn-success">ثبت دسته بندی &nbsp;<i class="fa fa-plus"></i></a>
+            </div>
             <div class="clearfix"></div>
         </div>
 
         <div class="x_content">
+            @if (Model.Count() < 1)
+            {
+                <p>با افزودن کلاس <code dir="ltr">bulk_action</code> برای جدول، جدول دارای  اعمال همگانی می‌شود.</p>
+            }
+            else
+            {
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover table-bordered jambo_table bulk_action">
+                        <thead>
+                            <tr class="headings">
+                                <td>لوگو</td>
+                                <td>عنوان</td>
+                                <td>تعداد زیر دسته</td>
+                                <td>عملیات</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var i in Model)
+                            {
+                                <tr>
+                                    <td><img src="@i.LogoPath" /></td>
+                                    <td>@i.Name</td>
+                                    @if (i.ChaildCategories.Count < 1)
+                                    {
+                                        <td>فاقد زیر دسته</td>
+                                    }
+                                    else
+                                    {
+                                        <td>@i.ChaildCategories.Count</td>
+                                    }
+                                    <td>
+                                        <div class="btn-group">
+                                            <a class="btn btn-info"><i class="fa fa-edit"></i></a>
+                                            @if (i.ChaildCategories.Count() > 0)
+                                            {
+                                                <a class="btn btn-primary">زیردسته ها</a>
+                                            }
 
-            <p>با افزودن کلاس <code dir="ltr">bulk_action</code> برای جدول، جدول دارای  اعمال همگانی می‌شود.</p>
+                                            <a class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
 
-            <div class="table-responsive">
-                <table class="table table-striped jambo_table bulk_action">
-                    <thead>
-                        <tr class="headings">
-                          
-                        </tr>
-                    </thead>
-                    <thead>
-                        @foreach (var i in Model)
-                        {
-                          
-                        }
-                    </thead>
-                  
-                </table>
-            </div>
+                    </table>
+                </div>
+            }
+
+
+
         </div>
     </div>
 </div>
