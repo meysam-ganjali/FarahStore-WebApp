@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<FarahStoreModel.Models.Category>
+<partial name="_ToastMessage" />
 <div class="page-title">
     <div class="title_left">
         <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
@@ -13,7 +14,8 @@
         </div>
     </div>
 </div>
-<div class="clearfix"></div>
+<div class="clearfix">
+</div>
 <div class="col-md-12 col-sm-12 col-xs-12">
     <div class="x_panel">
         <div class="x_title">
@@ -21,7 +23,7 @@
                 لیست دسته بندی ها
             </h2>
             <div class="panel_toolbox">
-                <a class="btn btn-success">ثبت دسته بندی &nbsp;<i class="fa fa-plus"></i></a>
+                <a href="/Admin/Category/Upsert" class="btn btn-success">ثبت دسته بندی &nbsp;<i class="fa fa-plus"></i></a>
             </div>
             <div class="clearfix"></div>
         </div>
@@ -29,7 +31,7 @@
         <div class="x_content">
             @if (Model.Count() < 1)
             {
-                <p>با افزودن کلاس <code dir="ltr">bulk_action</code> برای جدول، جدول دارای  اعمال همگانی می‌شود.</p>
+                <p>دسته بندی برای نمایش وجود نداد</p>
             }
             else
             {
@@ -47,7 +49,9 @@
                             @foreach (var i in Model)
                             {
                                 <tr>
-                                    <td><img src="@i.LogoPath" /></td>
+                                    <td>
+                                        <img src="~/@i.LogoPath" width="42" height="42" />
+                                    </td>
                                     <td>@i.Name</td>
                                     @if (i.ChaildCategories.Count < 1)
                                     {
@@ -64,7 +68,7 @@
                                             {
                                                 <a class="btn btn-primary">زیردسته ها</a>
                                             }
-
+                                            <a class="btn btn-success">افزودن زیردسته </a>
                                             <a class="btn btn-danger"><i class="fa fa-trash"></i></a>
                                         </div>
                                     </td>

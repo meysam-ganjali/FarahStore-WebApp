@@ -38,6 +38,7 @@
   <ItemGroup>
     <ProjectReference Include="..\FarahStoreApplication\FarahStoreApplication.csproj" />
     <ProjectReference Include="..\FarahStoreDataAccess\FarahStoreDataAccess.csproj" />
+    <ProjectReference Include="..\FarahStoreUtilities\FarahStoreUtilities.csproj" />
   </ItemGroup>
 
   <ItemGroup>

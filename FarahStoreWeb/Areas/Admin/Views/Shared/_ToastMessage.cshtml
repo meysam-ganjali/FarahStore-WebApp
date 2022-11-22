@@ -1,0 +1,37 @@
+﻿<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+@if (TempData["Message"] != null)
+{
+    switch (TempData["MessageType"])
+    {
+        case "Success":
+            {
+                <script>
+                    toastr.success("@TempData["Message"]")
+                </script>
+                break;
+            }
+        case "Info":
+            {
+                <script>
+                    toastr.info("@TempData["Message"]")
+                </script>
+                break;
+            }
+        case "Warning":
+            {
+                <script>
+                    toastr.warning("@TempData["Message"]")
+                </script>
+                break;
+            }
+        case "Error":
+            {
+                <script>
+                    toastr.error("@TempData["Message"]")
+                </script>
+                break;
+            }
+    }
+}
