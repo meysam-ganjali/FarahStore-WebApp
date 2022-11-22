@@ -31,7 +31,6 @@ public class CategoryRepository:Repository<Category>,ICategoryRepositry
             categoryFromDb.LogoPath = category.LogoPath;
         }
         categoryFromDb.Name=category.Name;
-        categoryFromDb.ParentCategoryId=category.ParentCategoryId;
         return new ResultDto
         {
             Status = true

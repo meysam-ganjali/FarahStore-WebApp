@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FarahStoreModel.Models;
 
@@ -11,9 +10,5 @@ public class Category
     [MaxLength(300,ErrorMessage = "عنوان دسته بندی بیشتر از 300 کاراکتر است")]
     public string Name { get; set; }
     public string? LogoPath { get; set; }
-    public int? ParentCategoryId { get; set; }
-    [ForeignKey("ParentCategoryId")]
-    public virtual Category ParentCategory { get; set; }
-    
-    public virtual ICollection<Category> SubCategories { get; set; }
+    public ICollection<ChaildCategory> ChaildCategories { get; set; }   
 }

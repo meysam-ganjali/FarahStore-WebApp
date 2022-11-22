@@ -13,6 +13,7 @@ public class DatabaseContex : IdentityDbContext<IdentityUser>
     }
 
     public DbSet<Category> Categories { get; set; }
+    public DbSet<ChaildCategory> ChaildCategories { get; set; }
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);

@@ -15,10 +15,14 @@ namespace FarahStoreWeb.Areas.Admin.Controllers
             _unitOfWork = unitOfWork;
             _environment = environment;
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string? searchKey)
         {
-            var res = await _unitOfWork.Category.GetAll(includeProperties: "ParentCategory,SubCategories");
-            return View(res);
+            var res = await _unitOfWork.Category.GetAll(includeProperties: "ChaildCategories");
+            if (!string.IsNullOrWhiteSpace(searchKey))
+            {
+                res = res.Where(u => u.Name.Contains(searchKey));
+            }
+            return View( res );
         }
     }
 }

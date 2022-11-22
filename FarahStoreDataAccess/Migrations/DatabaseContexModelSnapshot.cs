@@ -38,14 +38,35 @@ namespace FarahStoreDataAccess.Migrations
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
 
-                    b.Property<int?>("ParentCategoryId")
+                    b.HasKey("Id");
+
+                    b.ToTable("Categories");
+                });
+
+            modelBuilder.Entity("FarahStoreModel.Models.ChaildCategory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("LogoPath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ParentCategoryId");
+                    b.HasIndex("CategoryId");
 
-                    b.ToTable("Categories");
+                    b.ToTable("ChaildCategories");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -250,13 +271,15 @@ namespace FarahStoreDataAccess.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("FarahStoreModel.Models.Category", b =>
+            modelBuilder.Entity("FarahStoreModel.Models.ChaildCategory", b =>
                 {
-                    b.HasOne("FarahStoreModel.Models.Category", "ParentCategory")
-                        .WithMany("SubCategories")
-                        .HasForeignKey("ParentCategoryId");
+                    b.HasOne("FarahStoreModel.Models.Category", "Category")
+                        .WithMany("ChaildCategories")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("ParentCategory");
+                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -312,7 +335,7 @@ namespace FarahStoreDataAccess.Migrations
 
             modelBuilder.Entity("FarahStoreModel.Models.Category", b =>
                 {
-                    b.Navigation("SubCategories");
+                    b.Navigation("ChaildCategories");
                 });
 #pragma warning restore 612, 618
         }
