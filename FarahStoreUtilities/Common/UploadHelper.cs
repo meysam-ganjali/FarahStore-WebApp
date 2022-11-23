@@ -37,7 +37,7 @@ public class UploadHelper
                 };
             }
 
-            string fileName = Guid.NewGuid().ToString();
+            string fileName = Guid.NewGuid() + file.FileName;
             var filePath = Path.Combine(uploadsRootFolder, fileName);
             using (var fileStream = new FileStream(filePath, FileMode.Create))
             {

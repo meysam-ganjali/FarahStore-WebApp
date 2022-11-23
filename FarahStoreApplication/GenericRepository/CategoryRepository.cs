@@ -33,7 +33,8 @@ public class CategoryRepository:Repository<Category>,ICategoryRepositry
         categoryFromDb.Name=category.Name;
         return new ResultDto
         {
-            Status = true
+            Status = true,
+            Message = $"دسته بندی {categoryFromDb.Name} بروز رسانی شد"
         };
     }
 }
