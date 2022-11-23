@@ -14,11 +14,13 @@ public class UnitOfWork : IUnitOfWork
         _db = db;
         Category = new CategoryRepository(_db);
         ChaildCategory = new ChaildCategoryRepository(_db);
+        Product = new ProductRepository(_db);
 
     }
 
     public ICategoryRepositry Category { get; private set; }
     public IChaildCategoryRepository ChaildCategory { get; private set; }
+    public IProductRepository Product { get; private set; }
 
     public async Task Save()
     {
