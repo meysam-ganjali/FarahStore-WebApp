@@ -14,6 +14,12 @@ public class DatabaseContex : IdentityDbContext<IdentityUser>
 
     public DbSet<Category> Categories { get; set; }
     public DbSet<ChaildCategory> ChaildCategories { get; set; }
+    public DbSet<Product> Products { get; set; }
+    public DbSet<ProductImage> ProductImages { get; set; }
+    public DbSet<ProductColor> ProductColors { get; set; }
+    public DbSet<Warranty> Warranties { get; set; }
+    public DbSet<ProductReView> ProductReViews { get; set; }
+    public DbSet<ProductSpecifications> ProductSpecifications { get; set; }
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
