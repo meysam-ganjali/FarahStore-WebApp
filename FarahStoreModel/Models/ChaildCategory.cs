@@ -12,6 +12,7 @@ public class ChaildCategory
     [MaxLength(300, ErrorMessage = "عنوان دسته بندی بیشتر از 300 کاراکتر است")]
     public string Name { get; set; }
     public string? LogoPath { get; set; }
+    [Required(ErrorMessage = "عنوان دسته پدر را انتخاب کنید")]
     public int CategoryId { get; set; }
     [ForeignKey("CategoryId")]
     public Category Category { get; set; }

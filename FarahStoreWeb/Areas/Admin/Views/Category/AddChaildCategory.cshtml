@@ -1,15 +1,4 @@
-﻿@model FarahStoreModel.Models.Category
-@{
-    string SubmitButtonTxt = "ثبت";
-    string PageTitle = "ثبت دسته بندی جدید";
-    string Icon = "fa-plus";
-    if (Model != null)
-    {
-        SubmitButtonTxt = "بروزرسانی";
-        PageTitle = $"ویرایش دسته بندی {Model.Name}";
-        Icon = "fa-edit";
-    }
-}
+﻿@model FarahStoreModel.Models.ChaildCategory
 
 <div class="clearfix"></div>
 <div class="row">
@@ -17,23 +6,24 @@
         <div class="x_panel">
             <div class="x_title">
                 <h2>
-                  @PageTitle
+                    ثبت زیردسته برای  <span style="color: #FFF; padding: 0.1rem 0.6rem; border-radius: 10px;" class="border border-1 bg-primary">@ViewBag.ParentCategoryName</span>
                 </h2>
                 <ul class="nav navbar-right panel_toolbox">
                     <li>
-                      <i class="fa @Icon btn"></i>
+                        <i class="fa fa-plus btn"></i>
                     </li>
-                  
+
                 </ul>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
                 <br>
-                <form method="post" action="/Admin/Category/Upsert" enctype="multipart/form-data" class="form-horizontal form-label-left">
-                    <input asp-for="Id" type="hidden"/>
+                <form method="post" action="/Admin/Category/AddChaildCategory" enctype="multipart/form-data" class="form-horizontal form-label-left">
+                    <input name="CategoryId" type="hidden" value="@ViewBag.ParentCategoryId" />
+                    <input type="hidden" asp-for="Id"/>
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
-                            نام
+                            نام زیر دسته
                             <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
@@ -52,7 +42,7 @@
                     <div class="form-group">
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                             <a href="/Admin/Category/Index" class="btn btn-primary">انصراف</a>
-                            <button type="submit" class="btn btn-success">@SubmitButtonTxt</button>
+                            <button type="submit" class="btn btn-success">ثبت زیردسته</button>
                         </div>
                     </div>
 

@@ -20,7 +20,7 @@
     <div class="x_panel">
         <div class="x_title">
             <h2>
-                لیست دسته بندی ها
+                لیست دسته بندی ها 
             </h2>
             <div class="panel_toolbox">
                 <a href="/Admin/Category/Upsert" class="btn btn-success">ثبت دسته بندی &nbsp;<i class="fa fa-plus"></i></a>
@@ -66,9 +66,9 @@
                                         <a href="/Admin/Category/Upsert/@i.Id" class="btn btn-info"><i class="fa fa-edit"></i></a>
                                         @if (i.ChaildCategories.Count() > 0)
                                         {
-                                            <a class="btn btn-primary">زیردسته ها</a>
+                                                <a href="/Admin/Category/ChaildList/@i.Id" class="btn btn-primary">زیردسته ها</a>
                                         }
-                                        <a class="btn btn-success">افزودن زیردسته </a>
+                                            <a href="/Admin/Category/AddChaildCategory/@i.Id" class="btn btn-success">افزودن زیردسته </a>
                                             <a onclick="RemoveCategory('@i.Id','@i.Name')" class="btn btn-danger"><i class="fa fa-trash"></i></a>
                                     </div>
                                 </td>

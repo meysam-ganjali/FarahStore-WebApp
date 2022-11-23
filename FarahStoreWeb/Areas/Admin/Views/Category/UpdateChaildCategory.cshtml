@@ -1,39 +1,29 @@
-﻿@model FarahStoreModel.Models.Category
-@{
-    string SubmitButtonTxt = "ثبت";
-    string PageTitle = "ثبت دسته بندی جدید";
-    string Icon = "fa-plus";
-    if (Model != null)
-    {
-        SubmitButtonTxt = "بروزرسانی";
-        PageTitle = $"ویرایش دسته بندی {Model.Name}";
-        Icon = "fa-edit";
-    }
-}
-
+﻿@model FarahStoreModel.Models.ChaildCategory
 <div class="clearfix"></div>
 <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
             <div class="x_title">
                 <h2>
-                  @PageTitle
+                    <img src="~/@Model.LogoPath" width="128" height="48" /> بروز رسانی زیردسته
                 </h2>
                 <ul class="nav navbar-right panel_toolbox">
                     <li>
-                      <i class="fa @Icon btn"></i>
+                        <i class="fa fa-edit btn"></i>
                     </li>
-                  
+
                 </ul>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
                 <br>
-                <form method="post" action="/Admin/Category/Upsert" enctype="multipart/form-data" class="form-horizontal form-label-left">
-                    <input asp-for="Id" type="hidden"/>
+
+                <form method="post" action="/Admin/Category/UpdateChaildCategory" enctype="multipart/form-data" class="form-horizontal form-label-left">
+                    <input name="CategoryId" type="hidden" value="@ViewBag.ParentCategoryId" />
+                    <input type="hidden" asp-for="Id" />
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
-                            نام
+                            نام زیر دسته
                             <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
@@ -50,9 +40,21 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                            نام زیر دسته
+                            <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <select asp-for="CategoryId" asp-items="@ViewBag.ParenyCategory" class="js-example-basic-single form-control col-md-7 col-xs-12"  name="state">
+                                
+                            </select>
+                            <span asp-validation-for="CategoryId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                             <a href="/Admin/Category/Index" class="btn btn-primary">انصراف</a>
-                            <button type="submit" class="btn btn-success">@SubmitButtonTxt</button>
+                            <button type="submit" class="btn btn-success">ثبت زیردسته</button>
                         </div>
                     </div>
 
@@ -61,3 +63,11 @@
         </div>
     </div>
 </div>
+@section AdminScripts
+{
+    <script>
+        $(document).ready(function () {
+            $('.js-example-basic-single').select2();
+        });
+    </script>
+}
