@@ -2,9 +2,9 @@
 <div class="page-title">
     <div class="title_left">
         <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-            <form method="Post" action="/Admin/Category/index">
+            <form method="get" action="/Admin/Category/ChaildList">
                 <div class="input-group">
-                    <input type="text" class="form-control" name="searchKey" placeholder="جست و جو دسته بندی">
+                    <input type="text" class="form-control" name="searchkey" placeholder="جست و جو دسته بندی">
                     <span class="input-group-btn">
                         <button class="btn btn-secondary" type="submit"><i class="fa fa-search"></i></button>
                     </span>
@@ -19,7 +19,7 @@
     <div class="x_panel">
         <div class="x_title">
             <h2>
-                <img src="~/@Model.FirstOrDefault().Category.LogoPath" width="42" height="42" /> لیست دسته بندی ها @Model.FirstOrDefault().Category.Name
+                لیست دسته بندی ها @Model.FirstOrDefault().Category.Name
             </h2>
             <div class="panel_toolbox">
                 <a href="/Admin/Category" class="btn btn-success">بازگشت به لیست دسته بندی &nbsp;<i class="fa fa-arrow-right"></i></a>
@@ -54,7 +54,7 @@
                                     <td>
                                         <div class="btn-group">
                                             <a href="/Admin/Category/UpdateChaildCategory/@i.Id" class="btn btn-primary"><i class="fa fa-edit"></i></a>
-                                            <a onclick="RemoveCategory('@i.Id','@i.Name')" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                                            <a onclick="RemoveChaildCategory('@i.Id','@i.Name','@i.Category.Name')" class="btn btn-danger"><i class="fa fa-trash"></i></a>
                                         </div>
                                     </td>
                                 </tr>
@@ -75,9 +75,9 @@
     <script src="~/AdminAsset/vendors/Sweetalert2/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="~/AdminAsset/vendors/Sweetalert2/sweetalert2.min.css" />
     <script>
-        function RemoveCategory(id, title) {
+        function RemoveChaildCategory(id, title,parentTitle) {
             swal.fire({
-                title: 'حذف دسته بندی' + '  ' + title,
+                title: 'حذف زیر دسته ' + '  ' + title + ' از دسته بندی ' + ' ' + parentTitle,
                 text: "کاربر گرامی  مطمئن هستید؟",
                 icon: 'warning',
                 showCancelButton: true,
@@ -96,7 +96,7 @@
                         contentType: 'application/x-www-form-urlencoded',
                         dataType: 'json',
                         type: "POST",
-                        url: "/Admin/Category/DeleteCategory/",
+                        url: "/Admin/Category/DeleteChaildCategory/",
                         data: postData,
                         success: function (data) {
                             if (data.status == true) {

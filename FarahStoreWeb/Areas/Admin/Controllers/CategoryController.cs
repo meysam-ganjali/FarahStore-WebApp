@@ -151,8 +151,10 @@ namespace FarahStoreWeb.Areas.Admin.Controllers
             var chaildCategoryFromDb = await _unitOfWork.ChaildCategory.GetAll(includeProperties: "Category", filter: u => u.CategoryId.Equals(id));
             if (!string.IsNullOrWhiteSpace(searchkey))
             {
-                chaildCategoryFromDb = chaildCategoryFromDb.Where(u =>
-                    u.Name.Contains(searchkey) || u.Category.Name.Contains(searchkey));
+                chaildCategoryFromDb = await _unitOfWork.ChaildCategory.GetAll(
+                    includeProperties: "Category", filter: u => u.Name.Contains(searchkey) || 
+                                                                u.Category.Name.Contains(searchkey)&&
+                                                                u.CategoryId.Equals(id));
             }
             return View(chaildCategoryFromDb);
         }
@@ -207,8 +209,8 @@ namespace FarahStoreWeb.Areas.Admin.Controllers
         {
             var parentCategory = await _unitOfWork.Category.GetAll();
             ViewBag.ParenyCategory = new SelectList(parentCategory, "Id", "Name");
-            
-            var chaildCategory = await _unitOfWork.ChaildCategory.GetFirstOrDefault(filter: u => u.Id.Equals(id),includeProperties:"Category");
+
+            var chaildCategory = await _unitOfWork.ChaildCategory.GetFirstOrDefault(filter: u => u.Id.Equals(id), includeProperties: "Category");
             if (chaildCategory == null)
             {
                 TempData["Message"] = "دسته پدر یافت نشد یافت نشد";
@@ -254,6 +256,30 @@ namespace FarahStoreWeb.Areas.Admin.Controllers
                 TempData["MessageType"] = "Error";
                 return Redirect("/Admin/Category/Index");
             }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteChaildCategory(int id)
+        {
+            var chaildCategory = await _unitOfWork.ChaildCategory.GetFirstOrDefault(filter: u => u.Id.Equals(id));
+            if (id == null || chaildCategory == null)
+            {
+                TempData["Message"] = "زیردسته یافت نشد";
+                TempData["MessageType"] = "Error";
+                return Redirect("/Admin/Category/Index");
+            }
+            if (!string.IsNullOrWhiteSpace(chaildCategory.LogoPath))
+            {
+                //delete the old image
+                var oldImagePath = Path.Combine(_environment.WebRootPath, chaildCategory.LogoPath.TrimStart('\\'));
+                if (System.IO.File.Exists(oldImagePath))
+                {
+                    System.IO.File.Delete(oldImagePath);
+                }
+            }
+            var res = await _unitOfWork.ChaildCategory.Remove(chaildCategory);
+            await _unitOfWork.Save();
+            return Json(res);
         }
         #endregion
 
