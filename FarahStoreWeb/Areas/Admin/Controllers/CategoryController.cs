@@ -32,17 +32,25 @@ namespace FarahStoreWeb.Areas.Admin.Controllers
         {
 
             var category = await _unitOfWork.Category.GetFirstOrDefault(filter: u => u.Id.Equals(id));
+            if (id != null && category == null)
+            {
+                TempData["Message"] = "دسته یافت نشد";
+                TempData["MessageType"] = "Error";
+                return Redirect("/Admin/Category/Index");
+            }
             return View(category);
         }
         [HttpPost]
         public async Task<IActionResult> Upsert(Category category)
         {
+            var files = HttpContext.Request.Form.Files;
+            UploadHelper UploadObj = new UploadHelper(_environment);
             if (category.Id == 0)
             {
-                var files = HttpContext.Request.Form.Files;
+
                 if (files.Count() > 0)
                 {
-                    UploadHelper UploadObj = new UploadHelper(_environment);
+
                     var uploadedResultImg = UploadObj.UploadFile(files[0], $@"AdminAsset\images\category\");
                     category.LogoPath = uploadedResultImg.FileNameAddress;
                 }
@@ -66,6 +74,37 @@ namespace FarahStoreWeb.Areas.Admin.Controllers
             }
             else
             {
+                var objFromDb =await _unitOfWork.Category.GetFirstOrDefault(u => u.Id == category.Id);
+                if (files.Count() > 0)
+                {
+                    //delete the old image
+                    var oldImagePath = Path.Combine(_environment.WebRootPath, objFromDb.LogoPath.TrimStart('\\'));
+                    if (System.IO.File.Exists(oldImagePath))
+                    {
+                        System.IO.File.Delete(oldImagePath);
+                    }
+                    var uploadedResultImg = UploadObj.UploadFile(files[0], $@"AdminAsset\images\category\");
+                    category.LogoPath = uploadedResultImg.FileNameAddress;
+                }
+                else
+                {
+                    category.LogoPath = objFromDb.LogoPath;
+                }
+
+                var updateRes = await _unitOfWork.Category.Update(category);
+                await _unitOfWork.Save();
+                if (updateRes.Status)
+                {
+                    TempData["Message"] = updateRes.Message;
+                    TempData["MessageType"] = "Success";
+                    return Redirect("/Admin/Category/Index");
+                }
+                else
+                {
+                    TempData["Message"] = updateRes.Message;
+                    TempData["MessageType"] = "Error";
+                    return Redirect("/Admin/Category/Index");
+                }
                 //Update
             }
             return View();
