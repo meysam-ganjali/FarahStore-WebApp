@@ -109,5 +109,28 @@ namespace FarahStoreWeb.Areas.Admin.Controllers
             }
             return View();
         }
+        [HttpPost]
+        public async Task<IActionResult> DeleteCategory(int id)
+        {
+            var category = await _unitOfWork.Category.GetFirstOrDefault(filter: u => u.Id.Equals(id));
+            if (id == null || category == null)
+            {
+                TempData["Message"] = "دسته یافت نشد";
+                TempData["MessageType"] = "Error";
+                return Redirect("/Admin/Category/Index");
+            }
+            if (!string.IsNullOrWhiteSpace(category.LogoPath))
+            {
+                //delete the old image
+                var oldImagePath = Path.Combine(_environment.WebRootPath, category.LogoPath.TrimStart('\\'));
+                if (System.IO.File.Exists(oldImagePath))
+                {
+                    System.IO.File.Delete(oldImagePath);
+                }
+            }
+            var res = await _unitOfWork.Category.Remove(category);
+           await _unitOfWork.Save();
+            return Json(res);
+        }
     }
 }
