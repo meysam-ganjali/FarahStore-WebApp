@@ -13,11 +13,13 @@ public class UnitOfWork : IUnitOfWork
     {
         _db = db;
         Category = new CategoryRepository(_db);
-      
+        ChaildCategory = new ChaildCategoryRepository(_db);
+
     }
 
     public ICategoryRepositry Category { get; private set; }
-   
+    public IChaildCategoryRepository ChaildCategory { get; private set; }
+
     public async Task Save()
     {
         await _db.SaveChangesAsync();

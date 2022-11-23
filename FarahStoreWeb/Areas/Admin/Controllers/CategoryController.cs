@@ -9,7 +9,9 @@ namespace FarahStoreWeb.Areas.Admin.Controllers
     [Area("Admin")]
     public class CategoryController : Controller
     {
-        private readonly IUnitOfWork _unitOfWork;
+        #region Ctor And Private Interface
+
+         private readonly IUnitOfWork _unitOfWork;
         private Microsoft.AspNetCore.Hosting.IHostingEnvironment _environment;
 
         public CategoryController(IUnitOfWork unitOfWork, Microsoft.AspNetCore.Hosting.IHostingEnvironment environment)
@@ -17,7 +19,13 @@ namespace FarahStoreWeb.Areas.Admin.Controllers
             _unitOfWork = unitOfWork;
             _environment = environment;
         }
-        public async Task<IActionResult> Index(string? searchKey)
+
+        #endregion
+       
+
+        #region Parent Category Action
+
+         public async Task<IActionResult> Index(string? searchKey)
         {
             var res = await _unitOfWork.Category.GetAll(includeProperties: "ChaildCategories");
             if (!string.IsNullOrWhiteSpace(searchKey))
@@ -132,5 +140,17 @@ namespace FarahStoreWeb.Areas.Admin.Controllers
            await _unitOfWork.Save();
             return Json(res);
         }
+
+        #endregion
+
+        #region Chaild Category Action
+
+        public async Task<IActionResult> ChaildList(string? searchkey, int id)
+        {
+            return View();
+        }
+
+        #endregion
+
     }
 }
