@@ -1,4 +1,5 @@
-﻿<partial name="_ToastMessage" />
+﻿@model IEnumerable<FarahStoreModel.Models.Product>
+<partial name="_ToastMessage" />
 <div class="page-title">
     <div class="title_left">
         <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
@@ -22,77 +23,76 @@
                 لیست دسته بندی ها
             </h2>
             <div class="panel_toolbox">
-                <a href="/Admin/Category/Upsert" class="btn btn-success">ثبت دسته بندی &nbsp;<i class="fa fa-plus"></i></a>
+                <a href="/Admin/Product/CreateProduct" class="btn btn-success">ثبت محصول &nbsp;<i class="fa fa-plus"></i></a>
             </div>
             <div class="clearfix"></div>
         </div>
 
         <div class="x_content">
 
-            <p>دسته بندی برای نمایش وجود نداد</p>
+            @if (Model.Count() < 1 || Model == null)
+            {
+                <p class="text-primary">محصولی برای نمایش وجود نداد</p>
+            }
+            else
+            {
+                <div class="">
+                    <table class="table table-striped table-hover table-bordered jambo_table bulk_action">
+                        <thead>
+                            <tr class="headings">
+                                <td>لوگو</td>
+                                <td>عنوان</td>
+                                <td>تعداد زیر دسته</td>
+                                <td>عملیات</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>لوگو</td>
+                                <td>عنوان</td>
+                                <td>تعداد زیر دسته</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-secondary">عملیات</button>
+                                        <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <span class="caret"></span>
+                                            <span class="sr-only">Toggle Dropdown</span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <a href="#">
+                                                    <i class="fa fa-image text-primary bg-primary"></i>&nbsp;اضافه کردن تصویر
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <i class="fa fa-newspaper-o text-success bg-success"></i>&nbsp;اضافه کردن مشخصات
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <i class="fa fa-cube text-warning bg-warning"></i>&nbsp;ثبت رنگ
+                                                </a>
+                                            </li>
 
-            <div class="">
-                <table class="table table-striped table-hover table-bordered jambo_table bulk_action">
-                    <thead>
-                        <tr class="headings">
-                            <td>لوگو</td>
-                            <td>عنوان</td>
-                            <td>تعداد زیر دسته</td>
-                            <td>عملیات</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>لوگو</td>
-                            <td>عنوان</td>
-                            <td>تعداد زیر دسته</td>
-                            <td>
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-secondary">عملیات</button>
-                                    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <span class="caret"></span>
-                                        <span class="sr-only">Toggle Dropdown</span>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-image text-primary bg-primary"></i>&nbsp;اضافه کردن تصویر
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-newspaper-o text-success bg-success"></i>&nbsp;اضافه کردن مشخصات
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-address-card-o text-info bg-info"></i>&nbsp;درج بررسی
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-cube text-warning bg-warning"></i>&nbsp;ثبت رنگ
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-trash text-danger bg-danger"></i>&nbsp;حذف محصول
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-edit text-primary bg-primary"></i>&nbsp;ویرایش محصول
-                                            </a>
-                                        </li>
+                                        </ul>
+                                    </div>
 
-                                    </ul>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
+                                    <a href="#" class="btn btn-info">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                    <a href="#" class="btn btn-danger">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
 
-                </table>
-            </div>
+                    </table>
+                </div>
+            }
+
+
         </div>
     </div>
 </div>
