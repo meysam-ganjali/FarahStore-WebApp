@@ -100,6 +100,24 @@ namespace FarahStoreWeb.Areas.Admin.Controllers
             }
             return Json("");
         }
+
+        public async Task<IActionResult> AddFeatureForProduct(ProductSpecifications productSpecifications)
+        {
+            var res = await _unitOfWork.ProductSpecifications.Add(productSpecifications);
+
+            if (res.Status)
+            {
+                TempData["Message"] = res.Message;
+                TempData["MessageType"] = "Success";
+                await _unitOfWork.Save();
+                return Redirect("/Admin/Product/Index");
+
+            }
+
+            TempData["Message"] = res.Message;
+            TempData["MessageType"] = "Error";
+            return Redirect("/Admin/Product/Index");
+        }
         #endregion
 
     }

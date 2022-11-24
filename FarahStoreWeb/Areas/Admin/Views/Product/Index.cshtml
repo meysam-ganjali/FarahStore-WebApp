@@ -99,12 +99,12 @@
                                             </button>
                                             <ul class="dropdown-menu">
                                                 <li>
-                                                    <a onclick="ShowModalAddImage('@p.Id')">
+                                                    <a onclick="ShowModalAddImage('@p.Id','@p.Name')">
                                                         <i class="fa fa-image text-primary bg-primary"></i>&nbsp;اضافه کردن تصویر
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="#">
+                                                    <a onclick="ShowModalAddFeature('@p.Id','@p.Name')">
                                                         <i class="fa fa-newspaper-o text-success bg-success"></i>&nbsp;اضافه کردن مشخصات
                                                     </a>
                                                 </li>
@@ -139,20 +139,75 @@
 @section AdminScripts
     {
     <script>
-        function ShowModalAddImage(p) {
+        function ShowModalAddImage(p,name) {
             $('#Product_Id').val(p)
+            $('#ProductName_Image').html(name)
             $('#AddImage').modal('show');
         }
+        function ShowModalAddFeature(p,name) {
+            $('#Product_Id_Feature').val(p)
+            $('#ProductName_Feature').html(name)
 
+            $('#AddFeature').modal('show');
+        }
     </script>
 }
     @section AdminModal
     {
+    <div class="modal" id="AddFeature" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-danger">
+                    <h5 class="modal-title">اضافه کردن مشخصات برای محصول <strong id="ProductName_Feature"></strong></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="x_content">
+                        <br>
+                        <form method="post" action="/Admin/Product/AddFeatureForProduct" class="form-horizontal form-label-left">
+                            <input id="Product_Id_Feature" type="hidden" name="ProductId"/>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                                    عنوان مشخصه
+                                    <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" name="Title" required="required" class="form-control col-md-7 col-xs-12">
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                                    مقدار مشخصه
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" name="Value" class="form-control col-md-7 col-xs-12">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">انصراف</button>
+                                    <button type="submit" id="btnAddProductImage" class="btn btn-primary">ثبت </button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                  
+                </div>
+                <div class="modal-footer">
+
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="modal" id="AddImage" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-primary">
-                    <h5 class="modal-title">اضافه کردن عکس برای محصول</h5>
+                    <h5 class="modal-title">اضافه کردن عکس برای محصول <strong id="ProductName_Image"></strong></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

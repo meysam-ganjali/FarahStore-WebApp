@@ -16,6 +16,7 @@ public class UnitOfWork : IUnitOfWork
         ChaildCategory = new ChaildCategoryRepository(_db);
         Product = new ProductRepository(_db);
         ProductImage = new ProductImageRepository(_db);
+        ProductSpecifications = new SpecificationsRepository(_db);
 
     }
 
@@ -23,6 +24,7 @@ public class UnitOfWork : IUnitOfWork
     public IChaildCategoryRepository ChaildCategory { get; private set; }
     public IProductRepository Product { get; private set; }
     public IProductImageRepository ProductImage { get; private set; }
+    public ISpecificationsRepository ProductSpecifications { get; private set; }
 
     public async Task Save()
     {

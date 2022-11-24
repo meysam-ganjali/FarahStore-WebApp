@@ -8,5 +8,6 @@ public interface IUnitOfWork : IDisposable
     IChaildCategoryRepository ChaildCategory { get; }
     IProductRepository Product { get; }
     IProductImageRepository ProductImage { get; }
+    ISpecificationsRepository ProductSpecifications { get; }
     Task Save();
 }
