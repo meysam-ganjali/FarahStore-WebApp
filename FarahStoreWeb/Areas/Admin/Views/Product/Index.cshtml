@@ -117,7 +117,11 @@
                                                         <i class="fa fa-cube text-warning bg-warning"></i>&nbsp;ثبت رنگ
                                                     </a>
                                                 </li>
-
+                                                <li>
+                                                    <a>
+                                                        <i class="fa fa-info-circle text-info bg-info"></i>&nbsp;نمایش جرئیات
+                                                    </a>
+                                                </li>
                                             </ul>
                                         </div>
 
@@ -145,7 +149,7 @@
     <script>
         function ShowModalAddColor(p, name) {
             $('#Product_Id_Color').val(p)
-            $('#ProductName_Image').html(name)
+            $('#ProductName_Color').html(name)
             $('#AddColor').modal('show');
         }
         function ShowModalAddImage(p, name) {
@@ -166,7 +170,7 @@
     <div class="modal" id="AddColor" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header bg-danger">
+                <div class="modal-header bg-warning">
                     <h5 class="modal-title">اضافه کردن رنگ برای محصول <strong id="ProductName_Color"></strong></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -214,7 +218,7 @@
     <div class="modal" id="AddFeature" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header bg-danger">
+                <div class="modal-header bg-info">
                     <h5 class="modal-title">اضافه کردن مشخصات برای محصول <strong id="ProductName_Feature"></strong></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
