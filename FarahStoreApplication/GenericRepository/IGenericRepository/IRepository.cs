@@ -8,6 +8,7 @@ public interface IRepository<T> where T : class
     //GET ALL, GET By ID FIRST OR DEFAULT, ADD, REMOVE, REMOVERANGE
 
     Task<ResultDto> Add(T entity);
+    Task<ResultDto> AddRange(IEnumerable<T> entity);
     Task<ResultDto> Remove(T entity);
     Task<ResultDto> RemoveRange(IEnumerable<T> entity);
     Task<IEnumerable<T>> GetAll(Expression<Func<T, bool>>? filter = null,

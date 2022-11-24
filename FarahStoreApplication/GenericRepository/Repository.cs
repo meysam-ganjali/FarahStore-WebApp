@@ -41,6 +41,27 @@ public class Repository<T> : IRepository<T> where T : class
 
     }
 
+    public async Task<ResultDto> AddRange(IEnumerable<T> entity)
+    {
+        try
+        {
+            dbSet.AddRange(entity);
+            return new ResultDto
+            {
+                Message = "عملیات ثبت با موفقیت انجام شد",
+                Status = true
+            };
+        }
+        catch (Exception e)
+        {
+            return new ResultDto
+            {
+                Message = e.Message,
+                Status = false
+            };
+        }
+    }
+
     public async Task<IEnumerable<T>> GetAll(Expression<Func<T, bool>>? filter = null, Func<IQueryable<T>, IOrderedQueryable<T>>? orderby = null, string? includeProperties = null)
     {
         IQueryable<T> query = dbSet;

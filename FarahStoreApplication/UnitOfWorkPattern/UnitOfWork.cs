@@ -15,12 +15,14 @@ public class UnitOfWork : IUnitOfWork
         Category = new CategoryRepository(_db);
         ChaildCategory = new ChaildCategoryRepository(_db);
         Product = new ProductRepository(_db);
+        ProductImage = new ProductImageRepository(_db);
 
     }
 
     public ICategoryRepositry Category { get; private set; }
     public IChaildCategoryRepository ChaildCategory { get; private set; }
     public IProductRepository Product { get; private set; }
+    public IProductImageRepository ProductImage { get; private set; }
 
     public async Task Save()
     {

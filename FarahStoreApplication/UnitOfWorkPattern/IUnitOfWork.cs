@@ -7,5 +7,6 @@ public interface IUnitOfWork : IDisposable
     ICategoryRepositry Category { get; }
     IChaildCategoryRepository ChaildCategory { get; }
     IProductRepository Product { get; }
+    IProductImageRepository ProductImage { get; }
     Task Save();
 }

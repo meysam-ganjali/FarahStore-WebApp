@@ -40,77 +40,92 @@
                     <table class="table table-striped table-hover table-bordered jambo_table bulk_action">
                         <thead>
                         <tr class="headings">
-                            <td>نام محصول</td>
-                            <td>تعداد</td>
-                            <td>دسته</td>
-                            <td>قیمت</td>
-                            <td>عملیات</td>
+                            <th>تصویر</th>
+                            <th>نام محصول</th>
+                            <th>تعداد</th>
+                            <th>دسته</th>
+                            <th>قیمت</th>
+                            <th>عملیات</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach (var p in Model)
-                        {
-                            <tr>
-                                <td>
-                                    @if (!string.IsNullOrWhiteSpace(p.Slug))
-                                    {
-                                        <div><p style="color: #262626">@p.Name</p></div>
-                                        <div><p >@p.Slug</p></div>
-                                    }
-                                    else
-                                    {
-                                        @p.Name
-                                    }
-                                </td>
-                                <td>@p.NumberOfEntries</td>
-                                <td>@p.ChaildCategory.Category.Name - @p.ChaildCategory.Name</td>
-                                <td>
-                                    @if (p.OldPrice > 0)
-                                    {
-                                        <div><p style="text-decoration: line-through; text-decoration-color: red;text-decoration-style: wavy ">@p.OldPrice</p></div>
-                                        <div><p>@p.Price.ToString("n0")</p></div>
-                                    }
-                                    else
-                                    {
-                                        @p.Price.ToString("n0")
-                                    }
-                                </td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-secondary">عملیات</button>
-                                        <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <span class="caret"></span>
-                                            <span class="sr-only">Toggle Dropdown</span>
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <li>
+                            @foreach (var p in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @if (p.ProductImages != null)
+                                        {
+                                            <img src="~/@p.ProductImages.Select(u=>u.ImagePath).FirstOrDefault()" width="48" height="48"/>
+                                       }
+                                        else
+                                        {
+                                            <img src="~/download.png" width="48" height="48"/>
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (!string.IsNullOrWhiteSpace(p.Slug))
+                                        {
+                                            <div>
+                                                <p style="color: #262626">@p.Name</p></div>
+                                            <div>
+                                                <p>@p.Slug</p></div>
+                                        }
+                                        else
+                                        {
+                                            @p.Name
+                                        }
+                                    </td>
+                                    <td>@p.NumberOfEntries</td>
+                                    <td>@p.ChaildCategory.Category.Name - @p.ChaildCategory.Name</td>
+                                    <td>
+                                        @if (p.OldPrice > 0)
+                                        {
+                                            <div>
+                                                <p style="text-decoration: line-through; text-decoration-color: red; text-decoration-style: wavy">@p.OldPrice</p></div>
+                                            <div>
+                                                <p>@p.Price.ToString("n0")</p></div>
+                                        }
+                                        else
+                                        {
+                                            @p.Price.ToString("n0")
+                                        }
+                                    </td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-secondary">عملیات</button>
+                                            <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <span class="caret"></span>
+                                                <span class="sr-only">Toggle Dropdown</span>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li>
                                                     <a onclick="ShowModalAddImage('@p.Id')">
-                                                    <i class="fa fa-image text-primary bg-primary"></i>&nbsp;اضافه کردن تصویر
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <i class="fa fa-newspaper-o text-success bg-success"></i>&nbsp;اضافه کردن مشخصات
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <i class="fa fa-cube text-warning bg-warning"></i>&nbsp;ثبت رنگ
-                                                </a>
-                                            </li>
+                                                        <i class="fa fa-image text-primary bg-primary"></i>&nbsp;اضافه کردن تصویر
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <i class="fa fa-newspaper-o text-success bg-success"></i>&nbsp;اضافه کردن مشخصات
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <i class="fa fa-cube text-warning bg-warning"></i>&nbsp;ثبت رنگ
+                                                    </a>
+                                                </li>
 
-                                        </ul>
-                                    </div>
+                                            </ul>
+                                        </div>
 
-                                    <a href="#" class="btn btn-info">
-                                        <i class="fa fa-edit"></i>
-                                    </a>
-                                    <a href="#" class="btn btn-danger">
-                                        <i class="fa fa-trash"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                        }
+                                        <a href="#" class="btn btn-info">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                        <a href="#" class="btn btn-danger">
+                                            <i class="fa fa-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
 
                         </tbody>
 
@@ -122,42 +137,37 @@
     </div>
 </div>
 @section AdminScripts
-{
+    {
     <script>
         function ShowModalAddImage(p) {
+            $('#Product_Id').val(p)
             $('#AddImage').modal('show');
         }
+
     </script>
 }
-@section AdminModal
-{
+    @section AdminModal
+    {
     <div class="modal" id="AddImage" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">برند جدید</h5>
+                <div class="modal-header bg-primary">
+                    <h5 class="modal-title">اضافه کردن عکس برای محصول</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form method="post" action="/Admin/Berands/CreateBerand" enctype=multipart/form-data>
+                    <form method="post" action="/Admin/Product/AddImageForProduct" enctype="multipart/form-data">
+                        <input id="Product_Id" type="hidden" name="ProductId" />
                         <div class="form-group">
-                            <label for="inputEmail3" class="col-sm-2 control-label">نام </label>
-
+                            <label for="inputEmail3" class="col-sm-2 control-label">تصاویر</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="name" placeholder="نام  را وارد کنید">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputEmail3" class="col-sm-2 control-label">ایمیل</label>
-
-                            <div class="col-sm-10">
-                                <input type="file" class="form-control" name="img">
+                                <input type="file" name="files" multiple class="form-control" accept="image/*">
                             </div>
                         </div>
                         <div class="row">
-                            <button type="submit" class="btn btn-primary">ثبت </button>
+                            <button type="submit" id="btnAddProductImage" class="btn btn-primary">ثبت </button>
                         </div>
                     </form>
 

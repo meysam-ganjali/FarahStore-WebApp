@@ -1,5 +1,7 @@
 ﻿using FarahStoreApplication.UnitOfWorkPattern;
+using FarahStoreModel.CommonModel;
 using FarahStoreModel.Models;
+using FarahStoreUtilities.Common;
 using FarahStoreWeb.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -29,13 +31,13 @@ namespace FarahStoreWeb.Areas.Admin.Controllers
         public async Task<IActionResult> Index(string? searchKey)
         {
 
-            var products = await _unitOfWork.Product.GetAll(includeProperties: "ChaildCategory.Category");
+            var products = await _unitOfWork.Product.GetAll(includeProperties: "ChaildCategory.Category,ProductImages");
 
 
             if (!string.IsNullOrWhiteSpace(searchKey))
             {
                 products = await _unitOfWork.Product.GetAll(
-                   includeProperties: "ChaildCategory",
+                   includeProperties: "ChaildCategory,ProductImages",
                    filter: u => u.Name.Contains(searchKey));
             }
             return View(products);
@@ -58,12 +60,45 @@ namespace FarahStoreWeb.Areas.Admin.Controllers
                 TempData["MessageType"] = "Success";
                 await _unitOfWork.Save();
                 return Redirect("/Admin/Product/Index");
-                
+
             }
 
             TempData["Message"] = res.Message;
             TempData["MessageType"] = "Error";
             return Redirect("/Admin/Product/Index");
+        }
+        [HttpPost]
+        public async Task<IActionResult> AddImageForProduct(int ProductId)
+        {
+            var files = HttpContext.Request.Form.Files;
+            UploadHelper UploadObj = new UploadHelper(_environment);
+            List<ProductImage> productImages = new List<ProductImage>();
+            for (int i = 0; i < files.Count; i++)
+            {
+
+                productImages.Add(new ProductImage
+                {
+                    ImagePath = UploadObj.UploadFile(files[i], $@"AdminAsset\images\products\").FileNameAddress,
+                    ProductId = ProductId
+                });
+
+            }
+            var res = await _unitOfWork.ProductImage.AddRange(productImages);
+            await _unitOfWork.Save();
+
+            if (res.Status)
+            {
+                TempData["Message"] = res.Message;
+                TempData["MessageType"] = "Success";
+                return Redirect("/Admin/Product/Index");
+            }
+            else
+            {
+                TempData["Message"] = res.Message;
+                TempData["MessageType"] = "Error";
+                return Redirect("/Admin/Product/Index");
+            }
+            return Json("");
         }
         #endregion
 
