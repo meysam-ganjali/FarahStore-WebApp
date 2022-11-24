@@ -19,6 +19,5 @@ public class Product
     public ICollection<ProductImage> ProductImages { get; set; }
     public ICollection<ProductColor> ProductColors { get; set; }
     public ICollection<Warranty> Warranties { get; set; }
-    public ICollection<ProductReView> ProductReViews { get; set; }
     public ICollection<ProductSpecifications> ProductSpecifications { get; set; }
 }
