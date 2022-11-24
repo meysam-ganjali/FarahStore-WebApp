@@ -29,7 +29,7 @@ namespace FarahStoreWeb.Areas.Admin.Controllers
         public async Task<IActionResult> Index(string? searchKey)
         {
 
-            var products = await _unitOfWork.Product.GetAll(includeProperties: "ChaildCategory");
+            var products = await _unitOfWork.Product.GetAll(includeProperties: "ChaildCategory.Category");
 
 
             if (!string.IsNullOrWhiteSpace(searchKey))
