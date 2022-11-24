@@ -118,6 +118,24 @@ namespace FarahStoreWeb.Areas.Admin.Controllers
             TempData["MessageType"] = "Error";
             return Redirect("/Admin/Product/Index");
         }
+
+        public async Task<IActionResult> AddColorForProduct(ProductColor productColor)
+        {
+            var res = await _unitOfWork.ProductColor.Add(productColor);
+
+            if (res.Status)
+            {
+                TempData["Message"] = res.Message;
+                TempData["MessageType"] = "Success";
+                await _unitOfWork.Save();
+                return Redirect("/Admin/Product/Index");
+
+            }
+
+            TempData["Message"] = res.Message;
+            TempData["MessageType"] = "Error";
+            return Redirect("/Admin/Product/Index");
+        }
         #endregion
 
     }

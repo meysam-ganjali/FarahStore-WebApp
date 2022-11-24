@@ -39,14 +39,14 @@
                 <div class="">
                     <table class="table table-striped table-hover table-bordered jambo_table bulk_action">
                         <thead>
-                        <tr class="headings">
-                            <th>تصویر</th>
-                            <th>نام محصول</th>
-                            <th>تعداد</th>
-                            <th>دسته</th>
-                            <th>قیمت</th>
-                            <th>عملیات</th>
-                        </tr>
+                            <tr class="headings">
+                                <th>تصویر</th>
+                                <th>نام محصول</th>
+                                <th>تعداد</th>
+                                <th>دسته</th>
+                                <th>قیمت</th>
+                                <th>عملیات</th>
+                            </tr>
                         </thead>
                         <tbody>
                             @foreach (var p in Model)
@@ -55,20 +55,22 @@
                                     <td>
                                         @if (p.ProductImages != null)
                                         {
-                                            <img src="~/@p.ProductImages.Select(u=>u.ImagePath).FirstOrDefault()" width="48" height="48"/>
-                                       }
+                                            <img src="~/@p.ProductImages.Select(u=>u.ImagePath).FirstOrDefault()" width="48" height="48" />
+                                        }
                                         else
                                         {
-                                            <img src="~/download.png" width="48" height="48"/>
+                                            <img src="~/download.png" width="48" height="48" />
                                         }
                                     </td>
                                     <td>
                                         @if (!string.IsNullOrWhiteSpace(p.Slug))
                                         {
                                             <div>
-                                                <p style="color: #262626">@p.Name</p></div>
+                                                <p style="color: #262626">@p.Name</p>
+                                            </div>
                                             <div>
-                                                <p>@p.Slug</p></div>
+                                                <p>@p.Slug</p>
+                                            </div>
                                         }
                                         else
                                         {
@@ -81,9 +83,11 @@
                                         @if (p.OldPrice > 0)
                                         {
                                             <div>
-                                                <p style="text-decoration: line-through; text-decoration-color: red; text-decoration-style: wavy">@p.OldPrice</p></div>
+                                                <p style="text-decoration: line-through; text-decoration-color: red; text-decoration-style: wavy">@p.OldPrice</p>
+                                            </div>
                                             <div>
-                                                <p>@p.Price.ToString("n0")</p></div>
+                                                <p>@p.Price.ToString("n0")</p>
+                                            </div>
                                         }
                                         else
                                         {
@@ -109,7 +113,7 @@
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="#">
+                                                    <a onclick="ShowModalAddColor('@p.Id','@p.Name')">
                                                         <i class="fa fa-cube text-warning bg-warning"></i>&nbsp;ثبت رنگ
                                                     </a>
                                                 </li>
@@ -139,12 +143,17 @@
 @section AdminScripts
     {
     <script>
-        function ShowModalAddImage(p,name) {
+        function ShowModalAddColor(p, name) {
+            $('#Product_Id_Color').val(p)
+            $('#ProductName_Image').html(name)
+            $('#AddColor').modal('show');
+        }
+        function ShowModalAddImage(p, name) {
             $('#Product_Id').val(p)
             $('#ProductName_Image').html(name)
             $('#AddImage').modal('show');
         }
-        function ShowModalAddFeature(p,name) {
+        function ShowModalAddFeature(p, name) {
             $('#Product_Id_Feature').val(p)
             $('#ProductName_Feature').html(name)
 
@@ -154,6 +163,54 @@
 }
     @section AdminModal
     {
+    <div class="modal" id="AddColor" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-danger">
+                    <h5 class="modal-title">اضافه کردن رنگ برای محصول <strong id="ProductName_Color"></strong></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="x_content">
+                        <br>
+                        <form method="post" action="/Admin/Product/AddColorForProduct" class="form-horizontal form-label-left">
+                            <input id="Product_Id_Color" type="hidden" name="ProductId" />
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                                    نام رنگ
+                                    <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" name="ColorName" required="required" class="form-control col-md-7 col-xs-12">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                                    کد رنگ
+                                </label>
+                                <div class="col-md-2 col-sm-2 col-xs-2">
+                                    <input type="color" class="form-control form-control-color" id="exampleColorInput" name="ColorHex" title="یک رنگ انتخاب کنید">
+                                    @*<input type="text" name="Value" class="form-control col-md-7 col-xs-12">*@
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">انصراف</button>
+                                    <button type="submit" id="btnAddProductImage" class="btn btn-primary">ثبت </button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="modal" id="AddFeature" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -167,7 +224,7 @@
                     <div class="x_content">
                         <br>
                         <form method="post" action="/Admin/Product/AddFeatureForProduct" class="form-horizontal form-label-left">
-                            <input id="Product_Id_Feature" type="hidden" name="ProductId"/>
+                            <input id="Product_Id_Feature" type="hidden" name="ProductId" />
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
                                     عنوان مشخصه
@@ -195,10 +252,9 @@
 
                         </form>
                     </div>
-                  
+
                 </div>
                 <div class="modal-footer">
-
                 </div>
             </div>
         </div>

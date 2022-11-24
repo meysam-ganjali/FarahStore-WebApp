@@ -17,6 +17,7 @@ public class UnitOfWork : IUnitOfWork
         Product = new ProductRepository(_db);
         ProductImage = new ProductImageRepository(_db);
         ProductSpecifications = new SpecificationsRepository(_db);
+        ProductColor = new ProductColorRepository(_db);
 
     }
 
@@ -25,6 +26,7 @@ public class UnitOfWork : IUnitOfWork
     public IProductRepository Product { get; private set; }
     public IProductImageRepository ProductImage { get; private set; }
     public ISpecificationsRepository ProductSpecifications { get; private set; }
+    public IProductColorRepository ProductColor { get; private set; }
 
     public async Task Save()
     {
