@@ -74,20 +74,7 @@
                                 </div>
 
                             </div>
-                            <div class="row">
-                                <p>رنگهای موجو برای @Model.Name</p>
-                                <div class="col-12">
-                                    @foreach (var color in Model.ProductColors.ToList())
-                                    {
-                                        <div class="btn-group text-center mt-auto">
-                                            <div style="width: 64px; height: 64px; background-color: @color.ColorHex">
-                                                <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
-                                            </div>
-                                        </div>
-                                    }
-                                </div>
-                            </div>
-                           
+                          
                             @********************************************************@
                         </div>
                         <!-- start of user-activity-graph -->
@@ -96,10 +83,22 @@
                         <div class="" role="tabpanel" data-example-id="togglable-tabs">
                             <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
                                 <li role="presentation" class="active">
-                                    <a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true"><i class="fa fa-info-circle"></i>&nbsp; مشخصات محصول</a>
+                                    <a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">
+                                        <i class="fa fa-info-circle"></i>&nbsp; مشخصات محصول
+                                        <button class="btn btn-success"><i class="fa fa-plus"></i></button>
+                                    </a>
                                 </li>
                                 <li role="presentation" class="">
-                                    <a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false"><i class="fa fa-exchange"></i>&nbsp;گارانتی ها</a>
+                                    <a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">
+                                        <i class="fa fa-exchange"></i>&nbsp;گارانتی ها
+                                        <button class="btn btn-success"><i class="fa fa-plus"></i></button>
+                                    </a>
+                                </li>
+                                <li role="presentation" class="active">
+                                    <a href="#tab_content3" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">
+                                        <i class="fa fa-info-circle"></i>&nbsp; رنگ های محصول
+                                        <button class="btn btn-success"><i class="fa fa-plus"></i></button>
+                                    </a>
                                 </li>
 
                             </ul>
@@ -138,21 +137,21 @@
                                     {
                                         <ul class="messages">
                                            
-                                                @foreach (var w in Model.Warranties.ToList())
-                                                {
-                                                    <li>
-                                                        @*<img src="build/images/img.jpg" class="avatar" alt="Avatar">*@
+                                            @foreach (var w in Model.Warranties.ToList())
+                                            {
+                                                <li>
+                                                    @*<img src="build/images/img.jpg" class="avatar" alt="Avatar">*@
                                                
-                                                        <div class="message_wrapper">
-                                                            <h4 class="heading">@w.WarrantyName</h4>
-                                                            <blockquote class="message">
+                                                    <div class="message_wrapper">
+                                                        <h4 class="heading">@w.WarrantyName</h4>
+                                                        <blockquote class="message">
                                                                
-                                                            </blockquote>
-                                                            <br>
+                                                        </blockquote>
+                                                        <br>
                                                    
-                                                        </div>
-                                                    </li>
-                                                }
+                                                    </div>
+                                                </li>
+                                            }
 
                                         </ul>
                                     }
@@ -161,20 +160,68 @@
                                         <ul class="messages">
                                            
                                            
-                                                <li>
-                                                    @*<img src="build/images/img.jpg" class="avatar" alt="Avatar">*@
+                                            <li>
+                                                @*<img src="build/images/img.jpg" class="avatar" alt="Avatar">*@
                                                
-                                                    <div class="message_wrapper">
-                                                        <h5 class="heading">ضمانتی یا گارانتی برای محصول  @Model.Name ثبت نشده است</h5>
+                                                <div class="message_wrapper">
+                                                    <h5 class="heading">ضمانتی یا گارانتی برای محصول  @Model.Name ثبت نشده است</h5>
                                                        
-                                                    </div>
-                                                </li>
+                                                </div>
+                                            </li>
                                             
 
                                         </ul>
                                     }
                                               
                                  
+                                    <!-- end user projects -->
+
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
+
+                                    <!-- start user projects -->
+                                    @if (Model.ProductColors.Count() > 0)
+                                    {
+                                        <ul class="messages">
+
+                                            @foreach (var c in Model.ProductColors.ToList())
+                                            {
+                                                <li>
+                                                    @*<img src="build/images/img.jpg" class="avatar" alt="Avatar">*@
+
+                                                    <div class="message_wrapper">
+                                                        <h4 class="heading" style="border-radius: 50%; width: 48px; height: 48px;background-color: @c.ColorHex"></h4>
+                                                        <blockquote class="message">
+                                                            
+                                                            <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                                        </blockquote>
+                                                        <br>
+
+                                                    </div>
+                                                </li>
+                                            }
+
+                                        </ul>
+                                    }
+                                    else
+                                    {
+                                        <ul class="messages">
+
+
+                                            <li>
+                                                @*<img src="build/images/img.jpg" class="avatar" alt="Avatar">*@
+
+                                                <div class="message_wrapper">
+                                                    <h5 class="heading">  رنگی برای محصول  @Model.Name ثبت نشده است</h5>
+
+                                                </div>
+                                            </li>
+
+
+                                        </ul>
+                                    }
+
+
                                     <!-- end user projects -->
 
                                 </div>
