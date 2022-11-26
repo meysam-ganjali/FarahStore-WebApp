@@ -1,6 +1,7 @@
 ﻿@model FarahStoreModel.Models.Product
 @{
     int ActiveNumber = 0;
+    int P = 0;
 }
 <div class="">
     <div class="page-title">
@@ -16,12 +17,14 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>
+                    <div>
+                        <small>@Model.Name</small><br/>
                         <small>@(!string.IsNullOrWhiteSpace(Model.Slug) ? Model.Slug : "")</small>
-                    </h2>
+                        
+                    </div>
                     <ul class="nav navbar-right panel_toolbox">
                         <li>
-                            <p class="p-1 bg-primary">@Model.ChaildCategory.Category.Name - @Model.ChaildCategory.Name</p>
+                            <p>دسته یندی : &nbsp; <strong class="bg-primary" style="padding: 0 0.3rem ; border-radius: 10px;">@Model.ChaildCategory.Category.Name - @Model.ChaildCategory.Name</strong></p>
                         </li>
                     </ul>
                     <div class="clearfix"></div>
@@ -30,14 +33,8 @@
                     <div class="col-md-12 col-sm-12 col-xs-12">
 
                         <div class="profile_title">
-                            <div class="col-md-6">
-                                <h2>گزارش فعالیت کاربر</h2>
-                            </div>
-                            <div class="col-md-6">
-                                <div id="reportrange" class="pull-left" style="margin-top: 5px; background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #E6E9ED">
-                                    <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
-                                    <span>October 28, 2022 - November 26, 2022</span> <b class="caret"></b>
-                                </div>
+                            <div class="col-md-12 text-center">
+                                <h2>تصاویر محصول</h2>
                             </div>
                         </div>
                         <div>
@@ -45,22 +42,13 @@
                             <div class="row" style="height: 60vh">
                                 <div class="col-12">
                                     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" >
-                                        <!-- Indicators -->
-                                        <ol class="carousel-indicators">
-                                            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                                            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                                            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-                                        </ol>
-
-                                        <!-- Wrapper for slides -->
-
                                         <div class="carousel-inner" role="listbox">
                                             @foreach(var img in Model.ProductImages.ToList())
                                             {
                                                 ActiveNumber +=1;
                                                 
                                                     <div class="item @(ActiveNumber == 1 ?"active":"")">
-                                                        <img src="~/@img.ImagePath" alt="..." style="height:50vh">
+                                                        <img src="~/@img.ImagePath" style="height: 50vh; width: 100%;">
                                                         <div class="carousel-caption">
                                                             <a class="btn btn-danger">حذف این تصویر</a>
 
@@ -92,21 +80,20 @@
                         <div class="" role="tabpanel" data-example-id="togglable-tabs">
                             <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
                                 <li role="presentation" class="active">
-                                    <a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">فعالیت اخیر</a>
+                                    <a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true"><i class="fa fa-info-circle"></i>&nbsp; مشخصات محصول</a>
                                 </li>
                                 <li role="presentation" class="">
-                                    <a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">پروژه مشغول به کار</a>
+                                    <a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false"><i class="fa fa-exchange"></i>&nbsp;گارانتی ها</a>
                                 </li>
-                                <li role="presentation" class="">
-                                    <a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">پروفایل</a>
-                                </li>
+                              
                             </ul>
                             <div id="myTabContent" class="tab-content">
                                 <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
 
                                     <!-- start recent activity -->
                                     <ul class="messages">
-                                        <li>
+                                        @foreach (var feature in Model.ProductSpecifications.ToList()){
+<li>
                                             <img src="build/images/img.jpg" class="avatar" alt="Avatar">
                                             <div class="message_date">
                                                 <h3 class="date text-info">۳</h3>
@@ -124,6 +111,8 @@
                                                 </p>
                                             </div>
                                         </li>
+                                        }
+                                        
                                         <li>
                                             <img src="build/images/img.jpg" class="avatar" alt="Avatar">
                                             <div class="message_date">
@@ -248,9 +237,6 @@
                                     </table>
                                     <!-- end user projects -->
 
-                                </div>
-                                <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
-                                    <p>در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد. در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.</p>
                                 </div>
                             </div>
                         </div>
