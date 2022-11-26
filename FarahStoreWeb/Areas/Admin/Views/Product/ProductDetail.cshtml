@@ -1,0 +1,271 @@
+﻿@model FarahStoreModel.Models.Product
+@{
+    int ActiveNumber = 0;
+}
+<div class="">
+    <div class="page-title">
+        <div class="title_left" style="width: 100%;">
+            <h1 class="h4">مشخصات محصول <span class="text-primary">@Model.Name</span></h1>
+        </div>
+
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>
+                        <small>@(!string.IsNullOrWhiteSpace(Model.Slug) ? Model.Slug : "")</small>
+                    </h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li>
+                            <p class="p-1 bg-primary">@Model.ChaildCategory.Category.Name - @Model.ChaildCategory.Name</p>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+
+                        <div class="profile_title">
+                            <div class="col-md-6">
+                                <h2>گزارش فعالیت کاربر</h2>
+                            </div>
+                            <div class="col-md-6">
+                                <div id="reportrange" class="pull-left" style="margin-top: 5px; background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #E6E9ED">
+                                    <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+                                    <span>October 28, 2022 - November 26, 2022</span> <b class="caret"></b>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            @*******************************************************@
+                            <div class="row" style="height: 60vh">
+                                <div class="col-12">
+                                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" >
+                                        <!-- Indicators -->
+                                        <ol class="carousel-indicators">
+                                            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                                            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                                            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                                        </ol>
+
+                                        <!-- Wrapper for slides -->
+
+                                        <div class="carousel-inner" role="listbox">
+                                            @foreach(var img in Model.ProductImages.ToList())
+                                            {
+                                                ActiveNumber +=1;
+                                                
+                                                    <div class="item @(ActiveNumber == 1 ?"active":"")">
+                                                        <img src="~/@img.ImagePath" alt="..." style="height:50vh">
+                                                        <div class="carousel-caption">
+                                                            <a class="btn btn-danger">حذف این تصویر</a>
+
+                                                        </div>
+                                                    </div>
+
+                                            }
+                                        </div>
+                                        <!-- Controls -->
+                                        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            @********************************************************@
+                        </div>
+                        <!-- start of user-activity-graph -->
+                       
+                        <!-- end of user-activity-graph -->
+
+                        <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                            <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                                <li role="presentation" class="active">
+                                    <a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">فعالیت اخیر</a>
+                                </li>
+                                <li role="presentation" class="">
+                                    <a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">پروژه مشغول به کار</a>
+                                </li>
+                                <li role="presentation" class="">
+                                    <a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">پروفایل</a>
+                                </li>
+                            </ul>
+                            <div id="myTabContent" class="tab-content">
+                                <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
+
+                                    <!-- start recent activity -->
+                                    <ul class="messages">
+                                        <li>
+                                            <img src="build/images/img.jpg" class="avatar" alt="Avatar">
+                                            <div class="message_date">
+                                                <h3 class="date text-info">۳</h3>
+                                                <p class="month">خرداد</p>
+                                            </div>
+                                            <div class="message_wrapper">
+                                                <h4 class="heading">دزموند دیویسون</h4>
+                                                <blockquote class="message">
+                                                    کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
+                                                </blockquote>
+                                                <br>
+                                                <p class="url">
+                                                    <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
+                                                    <a href="#"><i class="fa fa-paperclip"></i> User Acceptance Test.doc </a>
+                                                </p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <img src="build/images/img.jpg" class="avatar" alt="Avatar">
+                                            <div class="message_date">
+                                                <h3 class="date text-error">۳۱</h3>
+                                                <p class="month">اردیبهشت</p>
+                                            </div>
+                                            <div class="message_wrapper">
+                                                <h4 class="heading">برایان مایکلز</h4>
+                                                <blockquote class="message">
+                                                    در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
+                                                </blockquote>
+                                                <br>
+                                                <p class="url">
+                                                    <span class="fs1" aria-hidden="true" data-icon=""></span>
+                                                    <a href="#" data-original-title="">دانلود</a>
+                                                </p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <img src="build/images/img.jpg" class="avatar" alt="Avatar">
+                                            <div class="message_date">
+                                                <h3 class="date text-info">۳</h3>
+                                                <p class="month">خرداد</p>
+                                            </div>
+                                            <div class="message_wrapper">
+                                                <h4 class="heading">دزموند دیویسون</h4>
+                                                <blockquote class="message">
+                                                    کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد.
+                                                </blockquote>
+                                                <br>
+                                                <p class="url">
+                                                    <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
+                                                    <a href="#">
+                                                        <i class="fa fa-paperclip"></i> User Acceptance
+                                                        Test.doc
+                                                    </a>
+                                                </p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <img src="build/images/img.jpg" class="avatar" alt="Avatar">
+                                            <div class="message_date">
+                                                <h3 class="date text-error">۳۱</h3>
+                                                <p class="month">اردیبهشت</p>
+                                            </div>
+                                            <div class="message_wrapper">
+                                                <h4 class="heading">برایان مایکلز</h4>
+                                                <blockquote class="message">
+                                                    در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
+                                                </blockquote>
+                                                <br>
+                                                <p class="url">
+                                                    <span class="fs1" aria-hidden="true" data-icon=""></span>
+                                                    <a href="#" data-original-title="">دانلود</a>
+                                                </p>
+                                            </div>
+                                        </li>
+
+                                    </ul>
+                                    <!-- end recent activity -->
+
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
+
+                                    <!-- start user projects -->
+                                    <table class="data table table-striped no-margin">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>نام پروژه</th>
+                                                <th>شرکت مشتری</th>
+                                                <th class="hidden-phone">ساعت صرف شده</th>
+                                                <th>مشارکت</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>New Company Takeover Review</td>
+                                                <td>Deveint Inc</td>
+                                                <td class="hidden-phone">18</td>
+                                                <td class="vertical-align-mid">
+                                                    <div class="progress">
+                                                        <div class="progress-bar progress-bar-success" data-transitiongoal="35" aria-valuenow="35" style="width: 35%;"></div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td>New Partner Contracts Consultanci</td>
+                                                <td>Deveint Inc</td>
+                                                <td class="hidden-phone">13</td>
+                                                <td class="vertical-align-mid">
+                                                    <div class="progress">
+                                                        <div class="progress-bar progress-bar-danger" data-transitiongoal="15" aria-valuenow="15" style="width: 15%;"></div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>3</td>
+                                                <td>Partners and Inverstors report</td>
+                                                <td>Deveint Inc</td>
+                                                <td class="hidden-phone">30</td>
+                                                <td class="vertical-align-mid">
+                                                    <div class="progress">
+                                                        <div class="progress-bar progress-bar-success" data-transitiongoal="45" aria-valuenow="45" style="width: 45%;"></div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>4</td>
+                                                <td>New Company Takeover Review</td>
+                                                <td>Deveint Inc</td>
+                                                <td class="hidden-phone">28</td>
+                                                <td class="vertical-align-mid">
+                                                    <div class="progress">
+                                                        <div class="progress-bar progress-bar-success" data-transitiongoal="75" aria-valuenow="75" style="width: 75%;"></div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <!-- end user projects -->
+
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
+                                    <p>در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد. در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section AdminScripts
+    {
+    <script src="~/AdminAsset/vendors/owlcarousel/owl.carousel.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".owl-carousel").owlCarousel();
+        });
+    </script>
+}
