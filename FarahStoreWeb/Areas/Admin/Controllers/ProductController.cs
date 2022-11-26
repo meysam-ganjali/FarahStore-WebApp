@@ -139,7 +139,7 @@ namespace FarahStoreWeb.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> ProductDetail(int id)
         {
-            var product = await _unitOfWork.Product.GetFirstOrDefault(filter:u=>u.Id.Equals(id),includeProperties: "ChaildCategory.Category,ProductImages,ProductColors,Warranties");
+            var product = await _unitOfWork.Product.GetFirstOrDefault(filter:u=>u.Id.Equals(id),includeProperties: "ChaildCategory.Category,ProductImages,ProductColors,Warranties,ProductSpecifications");
             if (product == null)
             {
                 TempData["Message"] = "محصولی با این مشخصات یافت نشد";

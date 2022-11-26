@@ -6,7 +6,11 @@
 <div class="">
     <div class="page-title">
         <div class="title_left" style="width: 100%;">
-            <h1 class="h4">مشخصات محصول <span class="text-primary">@Model.Name</span></h1>
+            <h1 class="h4">مشخصات محصول <span class="text-primary">@Model.Name با قیمت @Model.Price.ToString("#,##") تومان</span></h1>
+            @if (Model.OldPrice > 0)
+            {
+                <small>قیمت اصلی : @Model.OldPrice تومان</small>
+            }
         </div>
 
     </div>
@@ -18,7 +22,7 @@
             <div class="x_panel">
                 <div class="x_title">
                     <div>
-                        <small>@Model.Name</small><br/>
+                        <small>@Model.Name</small><br />
                         <small>@(!string.IsNullOrWhiteSpace(Model.Slug) ? Model.Slug : "")</small>
                         
                     </div>
@@ -41,19 +45,19 @@
                             @*******************************************************@
                             <div class="row" style="height: 60vh">
                                 <div class="col-12">
-                                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" >
+                                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                                         <div class="carousel-inner" role="listbox">
-                                            @foreach(var img in Model.ProductImages.ToList())
+                                            @foreach (var img in Model.ProductImages.ToList())
                                             {
-                                                ActiveNumber +=1;
-                                                
-                                                    <div class="item @(ActiveNumber == 1 ?"active":"")">
-                                                        <img src="~/@img.ImagePath" style="height: 50vh; width: 100%;">
-                                                        <div class="carousel-caption">
-                                                            <a class="btn btn-danger">حذف این تصویر</a>
+                                                ActiveNumber += 1;
 
-                                                        </div>
+                                                <div class="item @(ActiveNumber == 1 ?"active":"")">
+                                                    <img src="~/@img.ImagePath" style="height: 50vh; width: 100%;">
+                                                    <div class="carousel-caption">
+                                                        <a class="btn btn-danger">حذف این تصویر</a>
+
                                                     </div>
+                                                </div>
 
                                             }
                                         </div>
@@ -70,11 +74,19 @@
                                 </div>
 
                             </div>
-
+                            <div class="row">
+                                <p>رنگهای موجو برای @Model.Name</p>
+                                <div class="col-12">
+                                    @foreach (var color in Model.ProductColors.ToList())
+                                    {
+                                        <input type="color" value="@color.ColorHex"/>
+                                    }
+                                </div>
+                            </div>
+                           
                             @********************************************************@
                         </div>
                         <!-- start of user-activity-graph -->
-                       
                         <!-- end of user-activity-graph -->
 
                         <div class="" role="tabpanel" data-example-id="togglable-tabs">
@@ -85,92 +97,32 @@
                                 <li role="presentation" class="">
                                     <a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false"><i class="fa fa-exchange"></i>&nbsp;گارانتی ها</a>
                                 </li>
-                              
+
                             </ul>
                             <div id="myTabContent" class="tab-content">
                                 <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
 
                                     <!-- start recent activity -->
                                     <ul class="messages">
-                                        @foreach (var feature in Model.ProductSpecifications.ToList()){
-<li>
-                                            <img src="build/images/img.jpg" class="avatar" alt="Avatar">
-                                            <div class="message_date">
-                                                <h3 class="date text-info">۳</h3>
-                                                <p class="month">خرداد</p>
-                                            </div>
-                                            <div class="message_wrapper">
-                                                <h4 class="heading">دزموند دیویسون</h4>
-                                                <blockquote class="message">
-                                                    کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
-                                                </blockquote>
-                                                <br>
-                                                <p class="url">
-                                                    <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
-                                                    <a href="#"><i class="fa fa-paperclip"></i> User Acceptance Test.doc </a>
-                                                </p>
-                                            </div>
-                                        </li>
-                                        }
-                                        
-                                        <li>
-                                            <img src="build/images/img.jpg" class="avatar" alt="Avatar">
-                                            <div class="message_date">
-                                                <h3 class="date text-error">۳۱</h3>
-                                                <p class="month">اردیبهشت</p>
-                                            </div>
-                                            <div class="message_wrapper">
-                                                <h4 class="heading">برایان مایکلز</h4>
-                                                <blockquote class="message">
-                                                    در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
-                                                </blockquote>
-                                                <br>
-                                                <p class="url">
-                                                    <span class="fs1" aria-hidden="true" data-icon=""></span>
-                                                    <a href="#" data-original-title="">دانلود</a>
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <img src="build/images/img.jpg" class="avatar" alt="Avatar">
-                                            <div class="message_date">
-                                                <h3 class="date text-info">۳</h3>
-                                                <p class="month">خرداد</p>
-                                            </div>
-                                            <div class="message_wrapper">
-                                                <h4 class="heading">دزموند دیویسون</h4>
-                                                <blockquote class="message">
-                                                    کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد.
-                                                </blockquote>
-                                                <br>
-                                                <p class="url">
-                                                    <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
-                                                    <a href="#">
-                                                        <i class="fa fa-paperclip"></i> User Acceptance
-                                                        Test.doc
-                                                    </a>
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <img src="build/images/img.jpg" class="avatar" alt="Avatar">
-                                            <div class="message_date">
-                                                <h3 class="date text-error">۳۱</h3>
-                                                <p class="month">اردیبهشت</p>
-                                            </div>
-                                            <div class="message_wrapper">
-                                                <h4 class="heading">برایان مایکلز</h4>
-                                                <blockquote class="message">
-                                                    در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
-                                                </blockquote>
-                                                <br>
-                                                <p class="url">
-                                                    <span class="fs1" aria-hidden="true" data-icon=""></span>
-                                                    <a href="#" data-original-title="">دانلود</a>
-                                                </p>
-                                            </div>
-                                        </li>
+                                       @if (Model.ProductSpecifications.Count()>0)
+                                       {
+                                           @foreach (var feature in Model.ProductSpecifications.ToList())
+                                           {
+                                               <li>
+                                                   @*<img src="build/images/img.jpg" class="avatar" alt="Avatar">*@
+                                               
+                                                   <div class="message_wrapper">
+                                                       <h4 class="heading">@feature.Title</h4>
+                                                       <blockquote class="message">
+                                                           @feature.Value
+                                                       </blockquote>
+                                                       <br>
+                                                   
+                                                   </div>
+                                               </li>
+                                           }
 
+                                       }
                                     </ul>
                                     <!-- end recent activity -->
 
@@ -178,63 +130,47 @@
                                 <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
 
                                     <!-- start user projects -->
-                                    <table class="data table table-striped no-margin">
-                                        <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>نام پروژه</th>
-                                                <th>شرکت مشتری</th>
-                                                <th class="hidden-phone">ساعت صرف شده</th>
-                                                <th>مشارکت</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>New Company Takeover Review</td>
-                                                <td>Deveint Inc</td>
-                                                <td class="hidden-phone">18</td>
-                                                <td class="vertical-align-mid">
-                                                    <div class="progress">
-                                                        <div class="progress-bar progress-bar-success" data-transitiongoal="35" aria-valuenow="35" style="width: 35%;"></div>
+                                    @if (Model.Warranties.Count() > 0)
+                                    {
+                                        <ul class="messages">
+                                           
+                                                @foreach (var w in Model.Warranties.ToList())
+                                                {
+                                                    <li>
+                                                        @*<img src="build/images/img.jpg" class="avatar" alt="Avatar">*@
+                                               
+                                                        <div class="message_wrapper">
+                                                            <h4 class="heading">@w.WarrantyName</h4>
+                                                            <blockquote class="message">
+                                                               
+                                                            </blockquote>
+                                                            <br>
+                                                   
+                                                        </div>
+                                                    </li>
+                                                }
+
+                                        </ul>
+                                    }
+                                    else
+                                    {
+                                        <ul class="messages">
+                                           
+                                           
+                                                <li>
+                                                    @*<img src="build/images/img.jpg" class="avatar" alt="Avatar">*@
+                                               
+                                                    <div class="message_wrapper">
+                                                        <h5 class="heading">ضمانتی یا گارانتی برای محصول  @Model.Name ثبت نشده است</h5>
+                                                       
                                                     </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>New Partner Contracts Consultanci</td>
-                                                <td>Deveint Inc</td>
-                                                <td class="hidden-phone">13</td>
-                                                <td class="vertical-align-mid">
-                                                    <div class="progress">
-                                                        <div class="progress-bar progress-bar-danger" data-transitiongoal="15" aria-valuenow="15" style="width: 15%;"></div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>Partners and Inverstors report</td>
-                                                <td>Deveint Inc</td>
-                                                <td class="hidden-phone">30</td>
-                                                <td class="vertical-align-mid">
-                                                    <div class="progress">
-                                                        <div class="progress-bar progress-bar-success" data-transitiongoal="45" aria-valuenow="45" style="width: 45%;"></div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>4</td>
-                                                <td>New Company Takeover Review</td>
-                                                <td>Deveint Inc</td>
-                                                <td class="hidden-phone">28</td>
-                                                <td class="vertical-align-mid">
-                                                    <div class="progress">
-                                                        <div class="progress-bar progress-bar-success" data-transitiongoal="75" aria-valuenow="75" style="width: 75%;"></div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                                </li>
+                                            
+
+                                        </ul>
+                                    }
+                                              
+                                 
                                     <!-- end user projects -->
 
                                 </div>
