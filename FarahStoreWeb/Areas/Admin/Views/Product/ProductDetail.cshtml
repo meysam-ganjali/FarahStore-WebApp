@@ -79,7 +79,11 @@
                                 <div class="col-12">
                                     @foreach (var color in Model.ProductColors.ToList())
                                     {
-                                        <input type="color" value="@color.ColorHex"/>
+                                        <div class="btn-group text-center mt-auto">
+                                            <div style="width: 64px; height: 64px; background-color: @color.ColorHex">
+                                                <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                            </div>
+                                        </div>
                                     }
                                 </div>
                             </div>
