@@ -1,0 +1,271 @@
+﻿@using FarahStoreModel.Models
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model IEnumerable<FarahStoreModel.Models.Slider>
+<partial name="_ToastMessage" />
+<div class="page-title">
+    <div class="title_left">
+        <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+            <form method="Post" action="/Admin/Slider/index">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="searchKey" placeholder="جست و جو برای اسلایدر">
+                    <span class="input-group-btn">
+                        <button class="btn btn-secondary" type="submit"><i class="fa fa-search"></i></button>
+                    </span>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="clearfix">
+</div>
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>
+                لیست اسلایدر ها
+            </h2>
+            <div class="panel_toolbox">
+                <button onclick="ShowModalAddSlide()" class="btn btn-success">اسلاید جدید &nbsp;<i class="fa fa-plus"></i></button>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="x_content">
+            @if (Model.Count() < 1)
+            {
+                <p>هیچ اسلایدی برای نمایش وجود نداد</p>
+            }
+            else
+            {
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover table-bordered jambo_table bulk_action">
+                        <thead>
+                            <tr class="headings">
+                                <td>تصویر</td>
+                                <td>عنوان</td>
+                                <td>لینک</td>
+                                <td>مکان نمایش</td>
+                                <td>عملیات</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var i in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <img src="~/@i.ImagePath" width="150" height="60" />
+                                    </td>
+                                    <td>@i.Title</td>
+                                    <td>
+                                        <a href="@i.Link" class="btn btn-link">هدایت به صفحه هدف</a>
+                                    </td>
+                                    @switch (i.Possition)
+                                    {
+                                        case Possition.TOP:
+                                            {
+                                                <td>بالا </td>
+                                                break;
+                                            }
+                                        case Possition.BOTTOM:
+                                            {
+                                                <td>پایین </td>
+                                                break;
+                                            }
+                                        case Possition.BOTTOM_LEFT:
+                                            {
+                                                <td> پایین - چپ</td>
+                                                break;
+                                            }
+                                        case Possition.BOTTOM_RIGHT:
+                                            {
+                                                <td>پایین - راست </td>
+                                                break;
+                                            }
+                                        case Possition.CENTER:
+                                            {
+                                                <td>مرکز </td>
+                                                break;
+                                            }
+                                        case Possition.LEFT:
+                                            {
+                                                <td>چپ</td>
+                                                break;
+                                            }
+                                        case Possition.RIGHT:
+                                            {
+                                                <td>راست</td>
+                                                break;
+                                            }
+                                        case Possition.TOP_LEFT:
+                                            {
+                                                <td>بالا - چپ</td>
+                                                break;
+                                            }
+                                        case Possition.TOP_RIGHT:
+                                            {
+                                                <td>بالا - راست</td>
+                                                break;
+                                            }
+                                    }
+                                    <td>
+                                        <div class="btn-group">
+                                            <a onclick="RemoveCategory()" class="btn btn-primary"><i class="fa fa-edit"></i></a>
+                                            <a onclick="RemoveCategory()" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+
+                    </table>
+                </div>
+            }
+
+
+
+        </div>
+    </div>
+</div>
+@section AdminScripts
+    {
+    <script src="~/AdminAsset/vendors/Sweetalert2/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="~/AdminAsset/vendors/Sweetalert2/sweetalert2.min.css" />
+    <script>
+        function ShowModalAddSlide() {
+            $('#AddSlide').modal('show');
+        }
+        function RemoveCategory(id, title) {
+            swal.fire({
+                title: 'حذف دسته بندی' + '  ' + title,
+                text: "کاربر گرامی  مطمئن هستید؟",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#7cacbe',
+                confirmButtonText: 'بله ',
+                cancelButtonText: 'خیر'
+            }).then((result) => {
+                if (result.value) {
+
+                    var postData = {
+                        'id': id
+                    };
+
+                    $.ajax({
+                        contentType: 'application/x-www-form-urlencoded',
+                        dataType: 'json',
+                        type: "POST",
+                        url: "/Admin/Category/DeleteCategory/",
+                        data: postData,
+                        success: function (data) {
+                            if (data.status == true) {
+                                swal.fire(
+                                    'موفق!',
+                                    data.message,
+                                    'success'
+                                ).then(function (isConfirm) {
+                                    location.reload();
+                                });
+                            } else {
+
+                                swal.fire(
+                                    'هشدار!',
+                                    data.message,
+                                    'warning'
+                                );
+
+                            }
+                        },
+                        error: function (request, status, error) {
+                            alert(request.responseText);
+                        }
+
+                    });
+
+                }
+            });
+        }
+
+    </script>
+}
+    @section AdminModal
+    {
+    <div class="modal" id="AddSlide" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-primary">
+                    <h5 class="modal-title">ثبت اسلایدر جدید <strong id="ProductName_Color"></strong></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="x_content">
+                        <br>
+                        <form method="post" action="/Admin/Slider/CreateSlider" enctype="multipart/form-data" class="form-horizontal form-label-left">
+                            <input id="Product_Id_Color" type="hidden" name="ProductId" />
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                                    عنوان اسلایدر
+                                    <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" name="Title" required="required" class="form-control col-md-7 col-xs-12">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                                    مکان نمایش
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                    <select type="color" class="form-control form-control-color" name="Possition">
+                                        <option value="1">بالا</option>
+                                        <option value="2">پایین</option>
+                                        <option value="3">چپ</option>
+                                        <option value="4">راست</option>
+                                        <option value="5">بالا - راست</option>
+                                        <option value="6">بالا - چپ</option>
+                                        <option value="7">پایین - چپ</option>
+                                        <option value="8">پایین - راست</option>
+                                        <option value="9">مرکز</option>
+                                    </select>
+                                    @*<input type="text" name="Value" class="form-control col-md-7 col-xs-12">*@
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                                    لینک
+                                    <span class="required">*</span>
+                                </label>
+                                <div class=" col-md-6 col-sm-6 col-xs-12">
+                                    <div class="input-group">
+                                        <span class="input-group-addon" id="basic-addon1"><i class="fa fa-link"></i></span>
+                                        <input type="text" name="Link" class="form-control col-md-7 col-xs-12">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                                    تصویر اسلایدر
+                                    <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="file" name="files" required="required" class="form-control col-md-7 col-xs-12">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">انصراف</button>
+                                    <button type="submit" id="btnAddProductImage" class="btn btn-primary">ثبت </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+}
