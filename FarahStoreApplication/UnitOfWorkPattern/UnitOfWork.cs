@@ -18,6 +18,7 @@ public class UnitOfWork : IUnitOfWork
         ProductImage = new ProductImageRepository(_db);
         ProductSpecifications = new SpecificationsRepository(_db);
         ProductColor = new ProductColorRepository(_db);
+        Slider = new SliderRepository(_db);
 
     }
 
@@ -27,7 +28,7 @@ public class UnitOfWork : IUnitOfWork
     public IProductImageRepository ProductImage { get; private set; }
     public ISpecificationsRepository ProductSpecifications { get; private set; }
     public IProductColorRepository ProductColor { get; private set; }
-
+    public ISliderRepository Slider { get; private set; }
     public async Task Save()
     {
         await _db.SaveChangesAsync();

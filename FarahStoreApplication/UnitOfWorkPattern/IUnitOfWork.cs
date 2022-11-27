@@ -10,5 +10,6 @@ public interface IUnitOfWork : IDisposable
     IProductImageRepository ProductImage { get; }
     ISpecificationsRepository ProductSpecifications { get; }
     IProductColorRepository ProductColor { get; }
+    ISliderRepository Slider { get; }
     Task Save();
 }
