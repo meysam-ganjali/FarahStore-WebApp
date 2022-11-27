@@ -19,6 +19,7 @@ public class DatabaseContex : IdentityDbContext<IdentityUser>
     public DbSet<ProductColor> ProductColors { get; set; }
     public DbSet<Warranty> Warranties { get; set; }
     public DbSet<ProductSpecifications> ProductSpecifications { get; set; }
+    public DbSet<Slider> Sliders { get; set; }
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);

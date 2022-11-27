@@ -6,10 +6,10 @@
 <div class="">
     <div class="page-title">
         <div class="title_left" style="width: 100%;">
-            <h1 class="h4">مشخصات محصول <span class="text-primary">@Model.Name با قیمت @Model.Price.ToString("#,##") تومان</span></h1>
+            <h1 class="h4">مشخصات محصول <span class="label label-primary">@Model.Name با قیمت @Model.Price.ToString("#,##") تومان</span></h1>
             @if (Model.OldPrice > 0)
             {
-                <small>قیمت اصلی : @Model.OldPrice تومان</small>
+                <strong class="label label-success mb-1 h3">قیمت اصلی : @Model.OldPrice تومان</strong>
             }
         </div>
 
@@ -28,7 +28,7 @@
                     </div>
                     <ul class="nav navbar-right panel_toolbox">
                         <li>
-                            <p>دسته یندی : &nbsp; <strong class="bg-primary" style="padding: 0 0.3rem ; border-radius: 10px;">@Model.ChaildCategory.Category.Name - @Model.ChaildCategory.Name</strong></p>
+                            <p>دسته بندی : &nbsp; <strong class="bg-primary" style="padding: 0 0.3rem ; border-radius: 10px;">@Model.ChaildCategory.Category.Name - @Model.ChaildCategory.Name</strong></p>
                         </li>
                     </ul>
                     <div class="clearfix"></div>
@@ -115,7 +115,10 @@
                                                    @*<img src="build/images/img.jpg" class="avatar" alt="Avatar">*@
                                                
                                                    <div class="message_wrapper">
-                                                       <h4 class="heading">@feature.Title</h4>
+                                                       <p class="heading">@feature.Title &nbsp; 
+                                                           <button class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></button>
+                                                            <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                                                           </p>
                                                        <blockquote class="message">
                                                            @feature.Value
                                                        </blockquote>
@@ -193,7 +196,8 @@
                                                         <h4 class="heading" style="border-radius: 50%; width: 48px; height: 48px;background-color: @c.ColorHex"></h4>
                                                         <blockquote class="message">
                                                             
-                                                            <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                                            <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                                                            <button class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></button>
                                                         </blockquote>
                                                         <br>
 
