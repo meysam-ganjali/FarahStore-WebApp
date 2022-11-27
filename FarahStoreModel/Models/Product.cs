@@ -12,6 +12,9 @@ public class Product
     public int NumberOfEntries { get; set; }
     public long Price { get; set; }
     public long? OldPrice { get; set; }
+    public int ShowCount { get; set; } = 0;
+    public bool IsSelectedProduct { get; set; } = false;
+    public bool IsSpecialSale { get; set; } = false;
     public bool DiscountLable { get; set; } = false;
     public int ChaildCategoryCategoryId { get; set; }
     [ForeignKey("ChaildCategoryCategoryId")]
