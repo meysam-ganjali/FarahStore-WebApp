@@ -2,13 +2,11 @@
 
 public enum Possition
 {
-    TOP=1,
-    BOTTOM=2,
-    LEFT=3,
-    RIGHT=4,
-    TOP_RIGHT = 5,
-    TOP_LEFT=6,
-    BOTTOM_LEFT=7,
-    BOTTOM_RIGHT=8,
-    CENTER=9,
+    TOP_RIGHT = 1, 
+    TOP_LEFT_TOP = 2,
+    TOP_LEFT_CENTER = 3,
+    TOP_LEFT_BUTTOM = 4,
+    BOTTOM_LEFT=5,
+    BOTTOM_RIGHT=6,
+   
 }

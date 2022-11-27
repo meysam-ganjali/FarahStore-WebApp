@@ -61,16 +61,11 @@
                                     </td>
                                     @switch (i.Possition)
                                     {
-                                        case Possition.TOP:
-                                            {
-                                                <td>بالا </td>
-                                                break;
-                                            }
-                                        case Possition.BOTTOM:
-                                            {
-                                                <td>پایین </td>
-                                                break;
-                                            }
+                                        case Possition.TOP_RIGHT:
+                                        {
+                                            <td> بالا - راست</td>
+                                            break;
+                                        }
                                         case Possition.BOTTOM_LEFT:
                                             {
                                                 <td> پایین - چپ</td>
@@ -81,29 +76,19 @@
                                                 <td>پایین - راست </td>
                                                 break;
                                             }
-                                        case Possition.CENTER:
+                                        case Possition.TOP_LEFT_TOP:
                                             {
-                                                <td>مرکز </td>
+                                                <td>بالا - چپ - بال </td>
                                                 break;
                                             }
-                                        case Possition.LEFT:
+                                        case Possition.TOP_LEFT_CENTER:
                                             {
-                                                <td>چپ</td>
+                                                <td>بالا - چپ - مرکز</td>
                                                 break;
                                             }
-                                        case Possition.RIGHT:
+                                        case Possition.TOP_LEFT_BUTTOM:
                                             {
-                                                <td>راست</td>
-                                                break;
-                                            }
-                                        case Possition.TOP_LEFT:
-                                            {
-                                                <td>بالا - چپ</td>
-                                                break;
-                                            }
-                                        case Possition.TOP_RIGHT:
-                                            {
-                                                <td>بالا - راست</td>
+                                                <td>بالا - چپ - پایین</td>
                                                 break;
                                             }
                                     }
@@ -219,15 +204,12 @@
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-6">
                                     <select type="color" class="form-control form-control-color" name="Possition">
-                                        <option value="1">بالا</option>
-                                        <option value="2">پایین</option>
-                                        <option value="3">چپ</option>
-                                        <option value="4">راست</option>
-                                        <option value="5">بالا - راست</option>
-                                        <option value="6">بالا - چپ</option>
-                                        <option value="7">پایین - چپ</option>
-                                        <option value="8">پایین - راست</option>
-                                        <option value="9">مرکز</option>
+                                        <option value="1">بالا - راست</option>
+                                        <option value="2">بالا - چپ - بالا</option>
+                                        <option value="3">بالا - چپ - مرکز</option>
+                                        <option value="4">بالا - چپ - پایین</option>
+                                        <option value="5">پایین - چپ</option>
+                                        <option value="6">پایین - راست</option>
                                     </select>
                                     @*<input type="text" name="Value" class="form-control col-md-7 col-xs-12">*@
                                 </div>

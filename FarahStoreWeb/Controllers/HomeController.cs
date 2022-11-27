@@ -1,21 +1,26 @@
 ﻿using FarahStoreWeb.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using FarahStoreApplication.UnitOfWorkPattern;
+using FarahStoreModel.ViewModels;
 
 namespace FarahStoreWeb.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IUnitOfWork unitOfWork)
         {
-            _logger = logger;
+            _unitOfWork = unitOfWork;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            IndexPageViewModel model = new IndexPageViewModel();
+            var slider = await _unitOfWork.Slider.GetAll();
+            model.SliderLst = slider.ToList();
+            return View(model);
         }
 
         public IActionResult Privacy()
