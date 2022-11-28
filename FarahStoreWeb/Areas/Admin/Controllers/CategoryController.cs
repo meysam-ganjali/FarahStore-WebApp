@@ -1,13 +1,16 @@
 ﻿using FarahStoreApplication.UnitOfWorkPattern;
 using FarahStoreModel.Models;
+using FarahStoreUtilities;
 using FarahStoreUtilities.Common;
 using FarahStoreWeb.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace FarahStoreWeb.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles=SD.ManagerRole)]
     public class CategoryController : Controller
     {
         #region Ctor And Private Interface
