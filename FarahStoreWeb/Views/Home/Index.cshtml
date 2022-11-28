@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "صفحه اصلی";
     int topSliderActivNum = 0;
+    int tmpProductDisCountShow = 1;
 }
 
 <!-- Slider Section -->
@@ -51,7 +52,7 @@
                     }
                     @if (Model.SliderLst.Count(u => u.Possition == Possition.TOP_LEFT_CENTER) > 0)
                     {
-                          <div class="col align-self-center" data-aos="fade-top" data-aos-duration="1100">
+                        <div class="col align-self-center" data-aos="fade-top" data-aos-duration="1100">
                             <a href="./products.html">
                                 <img src="~/@Model.SliderLst.FirstOrDefault(s => s.Possition == Possition.TOP_LEFT_CENTER).ImagePath" alt="" width="100%">
                             </a>
@@ -60,7 +61,7 @@
 
                     @if (Model.SliderLst.Count(u => u.Possition == Possition.TOP_LEFT_BUTTOM) > 0)
                     {
-                          <div class="col align-self-end" data-aos="fade-top" data-aos-duration="1200">
+                        <div class="col align-self-end" data-aos="fade-top" data-aos-duration="1200">
                             <a href="./products.html">
                                 <img src="~/@Model.SliderLst.FirstOrDefault(s => s.Possition == Possition.TOP_LEFT_BUTTOM).ImagePath" alt="" width="100%">
                             </a>
@@ -131,353 +132,98 @@
                 </div>
             }
 
-           @* <div class="col">
-                <!-- Product Box -->
-                <div class="encode4326654321vfb">
-                    <a href="./product.html">
-                        <div class="image" style="background-image: url('assets/images/products/p200.png')"></div>
-                    </a>
-                    <div class="icons">
-                        <div class="btn btn-outline-secondary encode43243d"></div>
-                        <div class="btn btn-outline-secondary encode43bf243d"></div>
-                    </div>
-                    <div class="details p-3">
-                        <div class="category">
-                            <a href="./products.html">گوشی موبایل</a>
-                            &nbsp;/&nbsp;
-                            <a href="./products.html">سامسونگ</a>
-                        </div>
-                        <a href="./product.html">
-                            <h2>لپ تاپ 15 اینچی ایسوس مدل VivoBook X543MA-DM905</h2>
-                        </a>
-                        <div class="encode4365gbf265g43d">6.000.000 تومان</div>
-                        <div class="rate">
-                            <i class="fa fa-star-half-alt"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <span class="encode43bf265g43d">(14 رای دهنده)</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- /Product Box -->
-            </div>
-            <div class="col">
-                <!-- Product Box -->
-                <div class="encode4326654321vfb">
-                    <a href="./product.html">
-                        <div class="image" style="background-image: url('assets/images/products/p300.png')"></div>
-                    </a>
-                    <div class="icons">
-                        <div class="btn btn-outline-secondary encode43243d"></div>
-                        <div class="btn btn-outline-secondary encode43bf243d"></div>
-                    </div>
-                    <div class="details p-3">
-                        <div class="category">
-                            <a href="./products.html">گوشی موبایل</a>
-                            &nbsp;/&nbsp;
-                            <a href="./products.html">سامسونگ</a>
-                        </div>
-                        <a href="./product.html">
-                            <h2>هدفون بی سیم سامسونگ مدل Galaxy Buds Live</h2>
-                        </a>
-                        <div class="encode4365gbf265g43d">6.000.000 تومان</div>
-                        <div class="rate">
-                            <i class="fa fa-star-half-alt"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <span class="encode43bf265g43d">(14 رای دهنده)</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- /Product Box -->
-            </div>
-            <div class="col">
-                <!-- Product Box -->
-                <div class="encode4326654321vfb">
-                    <a href="./product.html">
-                        <div class="image" style="background-image: url('assets/images/products/p400.png')"></div>
-                    </a>
-                    <div class="icons">
-                        <div class="btn btn-outline-secondary encode43243d"></div>
-                        <div class="btn btn-outline-secondary encode43bf243d"></div>
-                    </div>
-                    <div class="details p-3">
-                        <div class="category">
-                            <a href="./products.html">گوشی موبایل</a>
-                            &nbsp;/&nbsp;
-                            <a href="./products.html">سامسونگ</a>
-                        </div>
-                        <a href="./product.html">
-                            <h2>دوربین دیجیتال کانن مدل EOS 2000D به همراه لنز 18-55 میلی متر DC III</h2>
-                        </a>
-                        <div class="encode4365gbf265g43d">6.000.000 تومان</div>
-                        <div class="rate">
-                            <i class="fa fa-star-half-alt"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <span class="encode43bf265g43d">(14 رای دهنده)</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- /Product Box -->
-            </div>*@
         </div>
 
         <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-md-4 featured-product on-sale">
-            <div class="col">
-                <!-- Product Box -->
-                <div class="encode4326654321vfb">
-                    <a href="./product.html">
-                        <div class="image" style="background-image: url('assets/images/products/p303.png')">
-                            <span class="badge on-sale-badge">فروش ویژه</span>
+            @foreach (var discountProduct in Model.ProductLst.Where(p => p.DiscountLable == true))
+            {
+                tmpProductDisCountShow += 1;
+                if (tmpProductDisCountShow > 10)
+                {
+                    break;
+                }
+                <div class="col">
+                    <!-- Product Box -->
+                    <div class="col">
+                        <!-- Product Box -->
+                        <div class="encode4326654321vfb  text-center">
+                            <a href="./product.html">
+                                <img src="~/@discountProduct.ProductImages.Select(u => u.ImagePath).FirstOrDefault()" style="width: 80%" class="image">
+                                @*<div class="image" style="background-image: url('@selectedProduct.ProductImages.Select(u => u.ImagePath).FirstOrDefault()')"></div>*@
+                            </a>
+                            <div class="icons">
+                                <div class="btn btn-outline-secondary encode43243d"></div>
+                                <div class="btn btn-outline-secondary encode43bf243d"></div>
+                            </div>
+                            <div class="details p-3">
+                                <div class="category">
+                                    <a href="./products.html">@discountProduct.ChaildCategory.Category.Name</a>
+                                    &nbsp;/&nbsp;
+                                    <a href="./products.html">@discountProduct.ChaildCategory.Name</a>
+                                </div>
+                                <a href="./product.html">
+                                    <h2>@discountProduct.Name</h2>
+                                </a>
+                                <div class="encode4365gbf265g43d">@discountProduct.Price.ToString("#,##") تومان</div>
+                                <div class="rate">
+                                    <i class="fa fa-star-half-alt"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <span class="encode43bf265g43d">(14 رای دهنده)</span>
+                                </div>
+                            </div>
                         </div>
-                    </a>
-                    <div class="details p-3">
-                        <div class="category">
-                            <a href="./products.html">گوشی موبایل</a>
-                            &nbsp;/&nbsp;
-                            <a href="./products.html">سامسونگ</a>
-                        </div>
-                        <a href="./product.html"><h2>مودم روتر ADSL2 Plus بی‌ سیم N300 دی-لینک مدل DSL-2740U</h2></a>
-                        <div>
-                            <span class="discounted">4.500.000 تومان</span>
-                            <br class="d-sm-none">
-                            <span class="encode4365gbf265g43d">4.800.000 تومان</span>
-                        </div>
-                        <div class="rate">
-                            <i class="fa fa-star-half-alt"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <span class="encode43bf265g43d">(14 رای دهنده)</span>
-                        </div>
+                        <!-- /Product Box -->
                     </div>
+                    <!-- /Product Box -->
                 </div>
-                <!-- /Product Box -->
-            </div>
-            <div class="col">
-                <!-- Product Box -->
-                <div class="encode4326654321vfb">
-                    <a href="./product.html">
-                        <div class="image" style="background-image: url('assets/images/products/p403.png')">
-                            <span class="badge on-sale-badge">فروش ویژه</span>
-                        </div>
-                    </a>
-                    <div class="details p-3">
-                        <div class="category">
-                            <a href="./products.html">گوشی موبایل</a>
-                            &nbsp;/&nbsp;
-                            <a href="./products.html">سامسونگ</a>
-                        </div>
-                        <a href="./product.html"><h2>دوربین دیجیتال مدل AX6065</h2></a>
-                        <div>
-                            <span class="discounted">4.500.000 تومان</span>
-                            <br class="d-sm-none">
-                            <span class="encode4365gbf265g43d">4.800.000 تومان</span>
-                        </div>
-                        <div class="rate">
-                            <i class="fa fa-star-half-alt"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <span class="encode43bf265g43d">(14 رای دهنده)</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- /Product Box -->
-            </div>
-            <div class="col">
-                <!-- Product Box -->
-                <div class="encode4326654321vfb">
-                    <a href="./product.html">
-                        <div class="image" style="background-image: url('assets/images/products/p301.png')">
-                            <span class="badge on-sale-badge">فروش ویژه</span>
-                        </div>
-                    </a>
-                    <div class="details p-3">
-                        <div class="category">
-                            <a href="./products.html">گوشی موبایل</a>
-                            &nbsp;/&nbsp;
-                            <a href="./products.html">سامسونگ</a>
-                        </div>
-                        <a href="./product.html"><h2>هدفون بلوتوثی مدل P39 2021</h2></a>
-                        <div>
-                            <span class="discounted">4.500.000 تومان</span>
-                            <br class="d-sm-none">
-                            <span class="encode4365gbf265g43d">4.800.000 تومان</span>
-                        </div>
-                        <div class="category">
-                            <a href="./products.html">گوشی موبایل</a>
-                            &nbsp;/&nbsp;
-                            <a href="./products.html">سامسونگ</a>
-                        </div>
-                        <div class="rate">
-                            <i class="fa fa-star-half-alt"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <span class="encode43bf265g43d">(14 رای دهنده)</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- /Product Box -->
-            </div>
-            <div class="col">
-                <!-- Product Box -->
-                <div class="encode4326654321vfb">
-                    <a href="./product.html">
-                        <div class="image" style="background-image: url('assets/images/products/p402.png')">
-                            <span class="badge on-sale-badge">فروش ویژه</span>
-                        </div>
-                    </a>
-                    <div class="details p-3">
-                        <div class="category">
-                            <a href="./products.html">گوشی موبایل</a>
-                            &nbsp;/&nbsp;
-                            <a href="./products.html">سامسونگ</a>
-                        </div>
-                        <a href="./product.html"><h2>دوربین دیجیتال نیکون مدل D3500 به همراه لنز 18-55 میلی متر VR AF-P</h2></a>
-                        <div>
-                            <span class="discounted">4.500.000 تومان</span>
-                            <br class="d-sm-none">
-                            <span class="encode4365gbf265g43d">4.800.000 تومان</span>
-                        </div>
-                        <div class="rate">
-                            <i class="fa fa-star-half-alt"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <span class="encode43bf265g43d">(14 رای دهنده)</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- /Product Box -->
-            </div>
+            }
         </div>
 
         <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-md-4 featured-product most-visited">
-            <div class="col">
-                <!-- Product Box -->
-                <div class="encode4326654321vfb">
-                    <a href="./product.html"><div class="image" style="background-image: url('assets/images/products/p403.png')"></div></a>
-                    <div class="icons">
-                        <div class="btn btn-outline-secondary encode43243d"></div>
-                        <div class="btn btn-outline-secondary encode43bf243d"></div>
-                    </div>
-                    <div class="details p-3">
-                        <div class="category">
-                            <a href="./products.html">گوشی موبایل</a>
-                            &nbsp;/&nbsp;
-                            <a href="./products.html">سامسونگ</a>
+            @foreach (var discountProduct in Model.ProductLst.Where(p => p.IsSpecialSale == true))
+            {
+                <div class="col">
+                    <!-- Product Box -->
+                    <div class="col">
+                        <!-- Product Box -->
+                        <div class="encode4326654321vfb  text-center">
+                            <a href="./product.html">
+                                <img src="~/@discountProduct.ProductImages.Select(u => u.ImagePath).FirstOrDefault()" style="width: 80%" class="image">
+                                @*<div class="image" style="background-image: url('@selectedProduct.ProductImages.Select(u => u.ImagePath).FirstOrDefault()')"></div>*@
+                            </a>
+                            <div class="icons">
+                                <div class="btn btn-outline-secondary encode43243d"></div>
+                                <div class="btn btn-outline-secondary encode43bf243d"></div>
+                            </div>
+                            <div class="details p-3">
+                                <div class="category">
+                                    <a href="./products.html">@discountProduct.ChaildCategory.Category.Name</a>
+                                    &nbsp;/&nbsp;
+                                    <a href="./products.html">@discountProduct.ChaildCategory.Name</a>
+                                </div>
+                                <a href="./product.html">
+                                    <h2>@discountProduct.Name</h2>
+                                </a>
+                                <div class="encode4365gbf265g43d">@discountProduct.Price.ToString("#,##") تومان</div>
+                                <div class="rate">
+                                    <i class="fa fa-star-half-alt"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <span class="encode43bf265g43d">(14 رای دهنده)</span>
+                                </div>
+                            </div>
                         </div>
-                        <a href="./product.html"><h2>دوربین دیجیتال مدل AX6065</h2></a>
-                        <div class="encode4365gbf265g43d">3.000.000 تومان</div>
-                        <div class="rate">
-                            <i class="fa fa-star-half-alt"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <span class="encode43bf265g43d">(14 رای دهنده)</span>
-                        </div>
+                        <!-- /Product Box -->
                     </div>
+                    <!-- /Product Box -->
                 </div>
-                <!-- /Product Box -->
-            </div>
-            <div class="col">
-                <!-- Product Box -->
-                <div class="encode4326654321vfb">
-                    <a href="./product.html"><div class="image" style="background-image: url('assets/images/products/p303.png')"></div></a>
-                    <div class="icons">
-                        <div class="btn btn-outline-secondary encode43243d"></div>
-                        <div class="btn btn-outline-secondary encode43bf243d"></div>
-                    </div>
-                    <div class="details p-3">
-                        <div class="category">
-                            <a href="./products.html">گوشی موبایل</a>
-                            &nbsp;/&nbsp;
-                            <a href="./products.html">سامسونگ</a>
-                        </div>
-                        <a href="./product.html"><h2>مودم روتر ADSL2 Plus بی‌ سیم N300 دی-لینک مدل DSL-2740U</h2></a>
-                        <div class="encode4365gbf265g43d">3.000.000 تومان</div>
-                        <div class="rate">
-                            <i class="fa fa-star-half-alt"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <span class="encode43bf265g43d">(14 رای دهنده)</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- /Product Box -->
-            </div>
-            <div class="col">
-                <!-- Product Box -->
-                <div class="encode4326654321vfb">
-                    <a href="./product.html"><div class="image" style="background-image: url('assets/images/products/p204.png')"></div></a>
-                    <div class="icons">
-                        <div class="btn btn-outline-secondary encode43243d"></div>
-                        <div class="btn btn-outline-secondary encode43bf243d"></div>
-                    </div>
-                    <div class="details p-3">
-                        <div class="category">
-                            <a href="./products.html">گوشی موبایل</a>
-                            &nbsp;/&nbsp;
-                            <a href="./products.html">سامسونگ</a>
-                        </div>
-                        <a href="./product.html"><h2>لپ تاپ 15 اینچی لنوو مدل Lenovo Ideapad 330 - E</h2></a>
-                        <div class="encode4365gbf265g43d">6.000.000 تومان</div>
-                        <div class="rate">
-                            <i class="fa fa-star-half-alt"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <span class="encode43bf265g43d">(14 رای دهنده)</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- /Product Box -->
-            </div>
-            <div class="col">
-                <!-- Product Box -->
-                <div class="encode4326654321vfb">
-                    <a href="./product.html"><div class="image" style="background-image: url('assets/images/products/p302.png')"></div></a>
-                    <div class="icons">
-                        <div class="btn btn-outline-secondary encode43243d"></div>
-                        <div class="btn btn-outline-secondary encode43bf243d"></div>
-                    </div>
-                    <div class="details p-3">
-                        <div class="category">
-                            <a href="./products.html">گوشی موبایل</a>
-                            &nbsp;/&nbsp;
-                            <a href="./products.html">سامسونگ</a>
-                        </div>
-                        <a href="./product.html"><h2>اسپیکر بلوتوثی قابل حمل تی اند جی مدل Tg-113</h2></a>
-                        <div class="encode4365gbf265g43d">4.000.000 تومان</div>
-                        <div class="rate">
-                            <i class="fa fa-star-half-alt"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <span class="encode43bf265g43d">(14 رای دهنده)</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- /Product Box -->
-            </div>
+            }
+
         </div>
         <!-- /Products -->
     </div>
