@@ -19,7 +19,9 @@ namespace FarahStoreWeb.Controllers
         {
             IndexPageViewModel model = new IndexPageViewModel();
             var slider = await _unitOfWork.Slider.GetAll();
+            var product = await _unitOfWork.Product.GetAll(includeProperties: "ChaildCategory,ChaildCategory.Category,ProductImages");
             model.SliderLst = slider.ToList();
+            model.ProductLst=product.ToList();
             return View(model);
         }
 
