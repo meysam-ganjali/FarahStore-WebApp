@@ -1,27 +1,69 @@
 ﻿@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using FarahStoreUtilities
 
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
 
-<ul class="navbar-nav">
+
 @if (SignInManager.IsSignedIn(User))
 {
-    <li class="nav-item">
+    @*<li class="nav-item">
         <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
     </li>
     <li class="nav-item">
         <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
             <button id="logout" type="submit" class="nav-link btn btn-link text-dark">Logout</button>
         </form>
-    </li>
+    </li>*@
+    <div class="col-12 col-md-7 col-lg-6 text-center" id="btn-login-register">
+        <ul style="display: flex; list-style: none;">
+            @if (User.IsInRole(SD.ManagerRole))
+            {
+                <li>
+                    <a href="/Admin/Home">پنل مدیریت</a>
+                </li>
+            }
+            @if (User.IsInRole(SD.EmployeeRole))
+            {
+                <li>
+                    <a href="/Admin/Home">پنل مدیریت</a>
+                </li>
+            }
+            @if (User.IsInRole(SD.CustomerRole))
+            {
+                <li>
+                    <a href="/Admin/Home">پنل کاربری</a>
+                </li>
+            }
+            /
+            <li>
+                <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                    <button id="logout" type="submit" style="border: 0; background: #fff;">خروج</button>
+                </form>
+            </li>
+        </ul>
+        @* <p>سلام</p> /
+    <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+    <button id="logout" type="submit" class="btn btn-link">خروج</button>
+    </form>*@
+
+    </div>
 }
 else
 {
-    <li class="nav-item">
-        <a class="nav-link text-dark" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link text-dark" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
-    </li>
+    <div class="col-12 col-md-7 col-lg-6 text-center" id="btn-login-register">
+        <ul style="display: flex; list-style: none;">
+            <li>
+                <a id="login" asp-area="Identity" asp-page="/Account/Login">ورود</a> /
+            </li>
+            <li>
+                <a id="register" asp-area="Identity" asp-page="/Account/Register">عضویت</a>
+            </li>
+        </ul>
+        @* <a id="login" asp-area="Identity" asp-page="/Account/Login">ورود</a> /
+    <a id="register" asp-area="Identity" asp-page="/Account/Register">عضویت</a>*@
+    </div>
+
 }
-</ul>
+

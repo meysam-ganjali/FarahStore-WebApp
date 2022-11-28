@@ -2,6 +2,8 @@ using FarahStoreApplication.UnitOfWorkPattern;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using FarahStoreWeb.Data;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using FarahStoreUtilities;
 
 var builder = WebApplication.CreateBuilder(args);
 #region DataBaseCnetxt, Identity
@@ -11,8 +13,8 @@ var connectionString = builder.Configuration.GetConnectionString("DatabaseContex
 builder.Services.AddDbContext<DatabaseContex>(options =>
     options.UseSqlServer(connectionString));
 
-builder.Services.AddDefaultIdentity<IdentityUser>()
-    .AddEntityFrameworkStores<DatabaseContex>();
+builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<DatabaseContex>().AddDefaultTokenProviders();
+
 
 #endregion
 
@@ -22,6 +24,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>()
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IEmailSender, EmailSender>();
 
 #endregion
 

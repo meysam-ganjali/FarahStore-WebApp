@@ -1,66 +1,86 @@
 ﻿@page
-@model RegisterModel
+@using FarahStoreUtilities
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model ReazorLearning.Areas.Identity.Pages.Account.RegisterModel
 @{
-    ViewData["Title"] = "Register";
+    ViewData["Title"] = "ثبت نام کاربران";
+    
 }
-
-<h1>@ViewData["Title"]</h1>
-
-<div class="row">
-    <div class="col-md-4">
-        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
-            <h2>Create a new account.</h2>
-            <hr />
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-floating">
-                <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
-                <label asp-for="Input.Email"></label>
-                <span asp-validation-for="Input.Email" class="text-danger"></span>
-            </div>
-            <div class="form-floating">
-                <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" />
-                <label asp-for="Input.Password"></label>
-                <span asp-validation-for="Input.Password" class="text-danger"></span>
-            </div>
-            <div class="form-floating">
-                <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" />
-                <label asp-for="Input.ConfirmPassword"></label>
-                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-            </div>
-            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
-        </form>
-    </div>
-    <div class="col-md-6 col-md-offset-2">
-        <section>
-            <h3>Use another service to register.</h3>
-            <hr />
-            @{
-                if ((Model.ExternalLogins?.Count ?? 0) == 0)
-                {
-                    <div>
-                        <p>
-                            There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">article
-                            about setting up this ASP.NET application to support logging in via external services</a>.
-                        </p>
-                    </div>
-                }
-                else
-                {
-                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
-                        <div>
-                            <p>
-                                @foreach (var provider in Model.ExternalLogins)
-                                {
-                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
-                                }
-                            </p>
+<section class="inner-page" id="contact-page">
+    <div class="container-fluid" id="page-hero">
+        <div class="row">
+            <div class="col-12">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 px-0">
+                            <h1>عضویت در سایت</h1>
+                            <p>با عضویت در سایت از همه امکانات روبیک مارکت بهره مند شوید.</p>
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="./index.html">صفحه نخست</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">عضویت</li>
+                                </ol>
+                            </nav>
                         </div>
-                    </form>
-                }
-            }
-        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+
+    <div class="container py-2 py-md-5">
+        <div class="row">
+            <div class="col-12 col-sm-10 offset-sm-1">
+                <div class="content">
+                    <div class="row">
+                        <div class="col-12 col-lg-5 text-center">
+                            <img src="~/assets/images/login.png" alt="">
+                        </div>
+                        <div class="col-12 col-lg-7 pt-5 pt-md-0 align-self-center">
+                            <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                                <div class="title">عضویت در روبیک مارکت</div>
+                                <p>با ورود به ناحیه کاربری خود از همه امکانات سایت بهره مند شوید.</p>
+                                <div class="form-group">
+                                    <label asp-for="Input.FullName">نام و نام خانوادگی :</label>
+                                    <input type="text" asp-for="Input.FullName" class="form-control" autocomplete="username" aria-required="true">
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Input.PhoneNumber">شماره موبایل :</label>
+                                    <input type="text" asp-for="Input.PhoneNumber" class="form-control" autocomplete="username" aria-required="true">
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Input.Email">پست الکترونیک :</label>
+                                    <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true">
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Input.Password">رمز عبور :</label>
+                                    <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" type="password">
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">تایید رمز عبور :</label>
+                                    <input type="password" asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true">
+                                </div>
+                                @if (User.IsInRole(SD.ManagerRole))
+                                {
+                                    <div class="form-floating my-2">
+                                        <input type="radio" name="rdUserRole" class="checkbox" value="@SD.ManagerRole" />@SD.ManagerRole<br/>
+                                        <input type="radio" name="rdUserRole" class="checkbox" value="@SD.EmployeeRole" />@SD.EmployeeRole<br/>
+                                        <input type="radio" name="rdUserRole" class="checkbox" value="@SD.CustomerRole" />@SD.CustomerRole<br/>
+                                    </div>
+                                }
+                                <div class="form-group">
+                                    <button id="registerSubmit" type="submit" class="btn btn-success" >تکمیل ثبت نام</button>
+                                </div>
+                            </form>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

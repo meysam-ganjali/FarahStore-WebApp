@@ -20,6 +20,7 @@ public class DatabaseContex : IdentityDbContext<IdentityUser>
     public DbSet<Warranty> Warranties { get; set; }
     public DbSet<ProductSpecifications> ProductSpecifications { get; set; }
     public DbSet<Slider> Sliders { get; set; }
+    public DbSet<ApplicationUser> ApplicationUsers { get; set; }
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);

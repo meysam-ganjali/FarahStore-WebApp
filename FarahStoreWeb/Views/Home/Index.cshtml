@@ -6,7 +6,7 @@
     int tmpProductDisCountShow = 1;
 }
 
-<!-- Slider Section -->
+<!-- Slider Section تمام شده-->
 <section id="slider" class="mt-3">
     <div class="container">
         <div class="row">
@@ -39,7 +39,6 @@
                     </div>
                 </div>
             }
-
             <div class="col-12 col-md-3 mt-2 mt-sm-1 text-center text-sm-start" id="slider-side-banners">
                 <div class="row row-cols-1 row-cols-sm-3 row-cols-md-1 h-100 gy-2 g-sm-1 g-md-0">
                     @if (Model.SliderLst.Count(u => u.Possition == Possition.TOP_LEFT_TOP) > 0)
@@ -74,8 +73,8 @@
         </div>
     </div>
 </section>
-<!-- /Slider Section -->
-<!-- Featured Products Section -->
+<!-- /Slider Section تمام شده -->
+<!-- Featured Products تمام شده -->
 <section id="featured-products" class="my-5">
     <div class="container">
         <!-- Tabs -->
@@ -89,7 +88,7 @@
             </div>
         </div>
         <!-- /Tabs -->
-        <!-- Products -->
+        <!-- Products-->
         <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-md-4 featured-product featured" data-aos="fade-up" data-aos-duration="1000">
             @foreach (var selectedProduct in Model.ProductLst.Where(p => p.IsSelectedProduct == true))
             {
@@ -228,7 +227,7 @@
         <!-- /Products -->
     </div>
 </section>
-<!-- /Featured Products Section -->
+<!-- /Featured Products Section تمام شده -->
 <!-- On Sale Products -->
 <section id="encode4365gbf2vfc65g43d" class="py-5 mt-5">
     <h1 class="section-title">فروش ویژه</h1>
