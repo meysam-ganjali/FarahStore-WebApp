@@ -11,5 +11,6 @@ public interface IUnitOfWork : IDisposable
     ISpecificationsRepository ProductSpecifications { get; }
     IProductColorRepository ProductColor { get; }
     ISliderRepository Slider { get; }
+    ICartRepository Cart { get; }
     Task Save();
 }

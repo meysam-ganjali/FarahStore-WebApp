@@ -19,6 +19,7 @@ public class UnitOfWork : IUnitOfWork
         ProductSpecifications = new SpecificationsRepository(_db);
         ProductColor = new ProductColorRepository(_db);
         Slider = new SliderRepository(_db);
+        Cart = new CartRepository(_db);
 
     }
 
@@ -29,6 +30,7 @@ public class UnitOfWork : IUnitOfWork
     public ISpecificationsRepository ProductSpecifications { get; private set; }
     public IProductColorRepository ProductColor { get; private set; }
     public ISliderRepository Slider { get; private set; }
+    public ICartRepository Cart { get; private set; }
     public async Task Save()
     {
         await _db.SaveChangesAsync();
