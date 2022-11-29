@@ -21,6 +21,7 @@ public class DatabaseContex : IdentityDbContext<IdentityUser>
     public DbSet<ProductSpecifications> ProductSpecifications { get; set; }
     public DbSet<Slider> Sliders { get; set; }
     public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+    public DbSet<Cart> Carts { get; set; }
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
