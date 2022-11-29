@@ -48,7 +48,6 @@ public class CartRepository:Repository<Cart>,ICartRepository
         }
 
         cartItem.Count += IncreaseNumber;
-        _db.SaveChangesAsync();
         return new ResultDto
         {
             Status = true,
