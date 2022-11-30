@@ -61,5 +61,20 @@ namespace FarahStoreWeb.Controllers
             }
 
         }
+
+        public async Task<IActionResult> PlusItem(int number, int pid)
+        {
+            var claimIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimIdentity.FindFirst(ClaimTypes.NameIdentifier);
+
+            var userCarts =
+                await _unitOfWork.Cart.GetFirstOrDefault(filter: u => u.ApplicationUserId.Equals(claim.Value), includeProperties: "Product,ApplicationUser");
+
+            
+                await _unitOfWork.Cart.Increase(number, pid);
+                await _unitOfWork.Save();
+                return Redirect("/Home/Index");
+            
+        }
     }
 }

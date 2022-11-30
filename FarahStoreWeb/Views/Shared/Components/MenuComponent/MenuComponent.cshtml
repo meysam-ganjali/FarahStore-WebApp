@@ -1,0 +1,35 @@
+﻿@model IEnumerable<FarahStoreModel.Models.Category>
+@{
+    int numberActive = 0;
+    string activeClass = "droopmenu-tab-active";
+}
+
+
+@foreach (var item in Model)
+{
+    numberActive += 1;
+    <div class="droopmenu-tabsection @(numberActive == 1 ?"droopmenu-tab-active":"")" id="droopmenutab10">
+        <a class="droopmenu-tabheader" href="#">@item.Name</a>
+        <div class="droopmenu-tabcontent">
+            <div class="droopmenu-row">
+                <ul class="droopmenu-col droopmenu-col4">
+                    @foreach (var chaild in item.ChaildCategories.ToList())
+                    {
+                        <li><a href="./products.html">@chaild.Name</a></li>
+
+                    }
+
+
+                </ul>
+                @if (numberActive <= 1)
+                {
+                    <ul class="droopmenu-col droopmenu-col4 d-none d-lg-inline-block">
+                        <li><img src="~/assets/images/megamenu/megamenu-image1.png" alt=""></li>
+                    </ul>
+                }
+
+            </div>
+        </div>
+    </div>
+}
+

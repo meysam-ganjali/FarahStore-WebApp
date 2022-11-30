@@ -44,6 +44,7 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="ViewComponents\" />
     <Folder Include="wwwroot\assets\CustomCssJs\" />
   </ItemGroup>
 
