@@ -68,7 +68,7 @@
                                                                 <img src="~/@p.Product.ProductImages.FirstOrDefault().ImagePath" alt="">
                                                             </div>
                                                             <div class="col-10 col-md-8">
-                                                                <a href="./product.html" target="_blank"><div class="title pt-2">@p.Product.Name × @p.Count</div></a>
+                                                                <a href="./product.html" target="_blank"><div class="title pt-2">@p.Product.Name</div></a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -84,9 +84,9 @@
                                                                 <div class="input-group-prepend">
                                                                 <a class="btn btn-outline-secondary btn-plus" href="/cart/PlusItem/@p.Id">+</a>
                                                                 </div>
-                                                                <input type="text" disabled="disabled" name="number" value="1" class="form-control text-center order-number" readonly="">
+                                                                <input type="text" disabled="disabled" name="number" value="@p.Count" class="form-control text-center order-number" readonly="">
                                                                 <div class="input-group-prepend">
-                                                                    <button class="btn btn-outline-secondary btn-minus" type="button">_</button>
+                                                                    <a class="btn btn-outline-secondary btn-minus" href="/Cart/MinItem/@p.Id">_</a>
                                                                 </div>
                                                             </div>
                                                         @*</form>*@

@@ -73,8 +73,21 @@ namespace FarahStoreWeb.Controllers
 
             await _unitOfWork.Cart.Increase(id);
                 await _unitOfWork.Save();
-                return Redirect("/Home/Index");
-            
+            return Redirect("/Cart");
+
+        }
+        public async Task<IActionResult> MinItem(int id)
+        {
+            var claimIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimIdentity.FindFirst(ClaimTypes.NameIdentifier);
+
+            var userCarts =
+                await _unitOfWork.Cart.GetFirstOrDefault(filter: u => u.ApplicationUserId.Equals(claim.Value), includeProperties: "Product,ApplicationUser");
+
+            await _unitOfWork.Cart.Decrease(id);
+            await _unitOfWork.Save();
+            return Redirect("/Cart");
+
         }
     }
 }

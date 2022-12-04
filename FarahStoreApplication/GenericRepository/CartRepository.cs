@@ -27,7 +27,10 @@ public class CartRepository:Repository<Cart>,ICartRepository
         }
 
         cartItem.Count -= 1;
-        _db.SaveChangesAsync();
+        if (cartItem.Count < 1)
+        {
+            _db.Carts.Remove(cartItem);
+        }
         return new ResultDto
         {
             Status = true,
