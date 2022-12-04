@@ -14,7 +14,7 @@ public class CartRepository:Repository<Cart>,ICartRepository
     {
         _db = db;
     }
-    public async Task<ResultDto> Decrease(int DecreaseNumber, int CartItemId)
+    public async Task<ResultDto> Decrease( int CartItemId)
     {
         var cartItem = await _db.Carts.Include(p=>p.Product).FirstOrDefaultAsync(c => c.Id == CartItemId);
         if (cartItem == null)
@@ -26,16 +26,16 @@ public class CartRepository:Repository<Cart>,ICartRepository
             };
         }
 
-        cartItem.Count -= DecreaseNumber;
+        cartItem.Count -= 1;
         _db.SaveChangesAsync();
         return new ResultDto
         {
             Status = true,
-            Message = $"{DecreaseNumber} واحد از کالای {cartItem.Product.Name} کم شد"
+            Message = $"1 واحد از کالای {cartItem.Product.Name} کم شد"
         };
     }
 
-    public async Task<ResultDto> Increase(int IncreaseNumber, int CartItemId)
+    public async Task<ResultDto> Increase( int CartItemId)
     {
         var cartItem = await _db.Carts.Include(p => p.Product).FirstOrDefaultAsync(c => c.Id == CartItemId);
         if (cartItem == null)
@@ -47,11 +47,11 @@ public class CartRepository:Repository<Cart>,ICartRepository
             };
         }
 
-        cartItem.Count += IncreaseNumber;
+        cartItem.Count += 1;
         return new ResultDto
         {
             Status = true,
-            Message = $"{IncreaseNumber} واحد به تعداد کالای {cartItem.Product.Name} اضافه شد شد"
+            Message = $"1 واحد به تعداد کالای {cartItem.Product.Name} اضافه شد شد"
         };
     }
 }

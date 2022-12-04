@@ -55,14 +55,14 @@ namespace FarahStoreWeb.Controllers
             }
             else
             {
-                await _unitOfWork.Cart.Increase(1, productIsExist.Id);
+                //await _unitOfWork.Cart.Increase(1, productIsExist.Id);
                 await _unitOfWork.Save();
                 return Redirect("/Home/Index");
             }
 
         }
 
-        public async Task<IActionResult> PlusItem(int number, int pid)
+        public async Task<IActionResult> PlusItem(int id)
         {
             var claimIdentity = (ClaimsIdentity)User.Identity;
             var claim = claimIdentity.FindFirst(ClaimTypes.NameIdentifier);
@@ -70,8 +70,8 @@ namespace FarahStoreWeb.Controllers
             var userCarts =
                 await _unitOfWork.Cart.GetFirstOrDefault(filter: u => u.ApplicationUserId.Equals(claim.Value), includeProperties: "Product,ApplicationUser");
 
-            
-                await _unitOfWork.Cart.Increase(number, pid);
+
+            await _unitOfWork.Cart.Increase(id);
                 await _unitOfWork.Save();
                 return Redirect("/Home/Index");
             

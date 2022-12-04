@@ -78,18 +78,18 @@
                                                     </div>
                                                     <div class="col-6 col-md-2 pl-4 pr-0 pr-md-3">
                                                         <div class="d-md-none font-weight-bold">تعداد</div>
-                                                        <form method="post" action="/cart/PlusItem">
+                                                        @*<form method="post" action="/cart/PlusItem">*@
                                                             <input type="hidden" name="pid" value="@p.Product.Id"/>
                                                             <div class="input-group mb-3 order-number">
                                                                 <div class="input-group-prepend">
-                                                                    <a class="btn btn-outline-secondary btn-plus" type="button">+</a>
+                                                                <a class="btn btn-outline-secondary btn-plus" href="/cart/PlusItem/@p.Id">+</a>
                                                                 </div>
-                                                                <input type="text" name="number" value="1" class="form-control text-center order-number" readonly="">
+                                                                <input type="text" disabled="disabled" name="number" value="1" class="form-control text-center order-number" readonly="">
                                                                 <div class="input-group-prepend">
                                                                     <button class="btn btn-outline-secondary btn-minus" type="button">_</button>
                                                                 </div>
                                                             </div>
-                                                        </form>
+                                                        @*</form>*@
                                                         
                                                     </div>
                                                     <div class="col-6 col-md-2">
